@@ -1,12 +1,10 @@
 # Model Registry
 
 from django.contrib import admin
-from .models import Price, Description, ProductName, AdditionalInfo
+from .models import Product
 
-admin.site.register(Price)
-admin.site.register(Description)
-admin.site.register(ProductName)
-admin.site.register(AdditionalInfo)
+admin.site.register(Product)
+
 
 
 # Register your models here.
