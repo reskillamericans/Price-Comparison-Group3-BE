@@ -4,9 +4,10 @@ from django.db import models
 
 
 class Product(models.Model):
-    product_name = models.CharField(max_length=100)
+    product_name = models.CharField(max_length=512, blank=True, null=True)
+    image = models.URLField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    description = models.CharField(max_length=1000)
-    miscellaneous = models.CharField(max_length=3000)
-# Create Models
-
+    description = models.TextField(blank=True, null=True)
+    miscellaneous = models.CharField(max_length=3000, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    uodated_at = models.DateTimeField(auto_now_add=True)
