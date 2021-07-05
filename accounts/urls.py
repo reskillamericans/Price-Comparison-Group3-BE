@@ -9,8 +9,9 @@ urlpatterns = [
     path('token' , token_send , name="token_send"),
     path('success' , success , name='success'),
     path('verify/<auth_token>' , verify , name="verify"),
-    path('error' , error_page , name="error")
-
-    
+    path('resetting/<reset_token>' , resetting , name="resetting"),
+    path('error' , error_page , name="error"),
+    path('passwordreset' , reset_attempt , name="reset_attempt"),
+    path('resetpage' , resetpage , name="resetpage"),
    
 ]

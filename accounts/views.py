@@ -82,6 +82,9 @@ def success(request):
 def token_send(request):
     return render(request , 'token_send.html')
 
+def resetpage(request):
+    return render(request , 'resetpage.html')
+
 
 
 def verify(request , auth_token):
@@ -106,7 +109,8 @@ def verify(request , auth_token):
 def error_page(request):
     return  render(request , 'error.html')
 
-
+def resetting(request , reset_token):
+        return render(request , 'resetpage.html')
 
 
 
@@ -119,3 +123,34 @@ def send_mail_after_registration(email , token):
     email_from = settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message , email_from ,recipient_list )
+
+
+def send_mail_password_reset(email , token):
+    subject = 'Reset your password'
+    message = f'Hi paste the link to reset your password http://127.0.0.1:8000/resetting/{token}'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message , email_from ,recipient_list )
+
+
+
+
+def reset_attempt(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        print(email)
+
+        try:
+
+            if User.objects.filter(email = email).first():
+                messages.success(request, 'Email associated with an account, you will be sent an email')
+
+                user_obj = User(email = email)
+                reset_token = str(uuid.uuid4())
+                send_mail_password_reset(email , reset_token)
+                return redirect('/token')
+
+        except Exception as e:
+            print(e)
+
+    return render(request , 'passwordreset.html')
