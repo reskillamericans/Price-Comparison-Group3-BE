@@ -12,8 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    return render(request , 'home.html')
-
+    return render(request , 'products.html')
 
 
 def login_attempt(request):
@@ -38,10 +37,11 @@ def login_attempt(request):
             messages.success(request, 'Wrong password.')
             return redirect('/accounts/login')
         
-        login(request , user)
+        login(request, user)
         return redirect('/')
 
-    return render(request , 'login.html')
+    return render(request, 'login.html')
+
 
 def register_attempt(request):
 
