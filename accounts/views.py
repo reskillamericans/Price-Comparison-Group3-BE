@@ -85,6 +85,9 @@ def token_send(request):
 def resetpage(request):
     return render(request , 'resetpage.html')
 
+def reset_success(request):
+    return render(request , 'reset_success.html')
+
 
 
 def verify(request , auth_token):
@@ -110,7 +113,27 @@ def error_page(request):
     return  render(request , 'error.html')
 
 def resetting(request , reset_token):
-        return render(request , 'resetpage.html')
+    try:
+        profile_obj = Profile.objects.filter(reset_token = reset_token).first()
+    
+
+        if profile_obj:
+            if profile_obj.is_reset:
+                messages.success(request, 'You have already used this link to reset your password.')
+                return redirect('/passwordreset')
+            profile_obj.is_reset = True
+            profile_obj.save()
+            messages.success(request, 'You will now be able to reset your password.')
+            return redirect('/resetpage')
+        else:
+            return redirect('/error')
+    except Exception as e:
+        print(e)
+        return redirect('/')
+
+
+def error_page(request):
+    return  render(request , 'error.html')
 
 
 
@@ -136,6 +159,7 @@ def send_mail_password_reset(email , token):
 
 
 def reset_attempt(request):
+ 
     if request.method == 'POST':
         email = request.POST.get('email')
         print(email)
@@ -143,14 +167,49 @@ def reset_attempt(request):
         try:
 
             if User.objects.filter(email = email).first():
-                messages.success(request, 'Email associated with an account, you will be sent an email')
-
-                user_obj = User(email = email)
                 reset_token = str(uuid.uuid4())
+                profile_obj = Profile.objects.create(reset_token = reset_token)
+                profile_obj.save()
                 send_mail_password_reset(email , reset_token)
                 return redirect('/token')
+            
+            else:
+                messages.success(request, 'Email not associated with an account.')
+                return redirect('/passwordreset')
 
         except Exception as e:
             print(e)
-
+    
     return render(request , 'passwordreset.html')
+
+# user id and the token, check if it is the user id and the correct token
+
+
+
+
+def resetpage(request):
+ 
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        print(password)
+
+        
+        user_obj = User.objects.filter(username = username).first()
+        
+        if user_obj is None:
+            messages.success(request, 'User not found.')
+            return redirect('/accounts/login')
+        
+        profile_obj = Profile.objects.filter(user = user_obj).first()
+
+        if profile_obj.is_reset:
+            user_obj.set_password(password)
+            user_obj.save()
+            return redirect('/reset_success')
+        
+        if not profile_obj.is_reset:
+            messages.success(request, 'Please click the link emailed to you with a token.')
+            return redirect('/resetpage')
+    
+    return render(request , 'resetpage.html')
