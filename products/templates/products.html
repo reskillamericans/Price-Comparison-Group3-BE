@@ -1,0 +1,24 @@
+
+
+{% block content %}
+
+{{} product_list }}
+
+{% for instance in product_list %}
+
+
+<h1>Products List</h1>
+<
+
+</br><li><a href="{% url 'retrieveproduct' product.id %}">{{ product.id}}.<a> <br> {{ product.product_name }}<a>  </br>${{ product.price }} </a><br> Last update {{ product.updated_at }}</a></li>
+        
+{% endfor %}
+
+{% endblock %}
+      </div>
+</body>
+
+</html>
+
+
+
