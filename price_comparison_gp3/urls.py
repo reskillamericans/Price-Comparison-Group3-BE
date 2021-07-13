@@ -22,14 +22,6 @@ from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-<<<<<<< Updated upstream
-    path('' , include('accounts.urls')),
-    path('', include('price_comparison.urls')),
-=======
-    path('', include('products.urls'))
-
-    # apps
     
- 
->>>>>>> Stashed changes
+    path('', include('products.urls')),
 ]

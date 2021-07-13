@@ -1,24 +1,17 @@
-
-
-{% block content %}
-
-{{} product_list }}
-
-{% for instance in product_list %}
-
-
+<!DOCTYPE html>
+<html>
+  {% load static %}
+<div class="main">
 <h1>Products List</h1>
-<
 
-</br><li><a href="{% url 'retrieveproduct' product.id %}">{{ product.id}}.<a> <br> {{ product.product_name }}<a>  </br>${{ product.price }} </a><br> Last update {{ product.updated_at }}</a></li>
-        
+
+
+{% for product in products %}
+
+</br><a href="{% url 'product_detail' pk=product.pk %}">{{ product.id}}. {{ product.product_name }}</a> 
+</br>{{ product.description}}<br>
+<hr/>
+
 {% endfor %}
-
-{% endblock %}
-      </div>
-</body>
-
-</html>
-
 
 
