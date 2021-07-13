@@ -203,12 +203,12 @@ def resetpage(request):
         
         profile_obj = Profile.objects.filter(user = user_obj).first()
 
-        if profile_obj.is_reset:
+        if not profile_obj.is_reset:
             user_obj.set_password(password)
             user_obj.save()
             return redirect('/reset_success')
         
-        if not profile_obj.is_reset:
+        if profile_obj.is_reset:
             messages.success(request, 'Please click the link emailed to you with a token.')
             return redirect('/resetpage')
     
