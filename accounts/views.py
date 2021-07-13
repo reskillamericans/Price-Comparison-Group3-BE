@@ -71,6 +71,7 @@ def register_attempt(request):
 
         except Exception as e:
             print(e)
+            return redirect("/")
 
 
     return render(request , 'register.html')
