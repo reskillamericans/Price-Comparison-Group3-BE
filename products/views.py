@@ -18,9 +18,9 @@ def comment_list(request, id):
 
 
 @login_required
-def new_comment(request, id):
-    products = get_object_or_404(Product, id=id)
+def new_comment(request):
     if request.method == "POST":
+        # products = get_object_or_404(Product, id=id)
         form = CommentForm(request.POST)
         if form.is_valid():
             comment = form.save(commit=False)
@@ -30,7 +30,7 @@ def new_comment(request, id):
             return redirect('products', id=products.id)
     else:
         form = CommentForm()
-    return render(request, 'new_comment', {'form': form})
+    return render(request, 'new_comment.html', {'form': form})
 
 
 @login_required

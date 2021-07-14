@@ -10,7 +10,4 @@ urlpatterns = [
     path('success' , success , name='success'),
     path('verify/<auth_token>' , verify , name="verify"),
     path('error' , error_page , name="error")
-
-    
-   
 ]

@@ -21,5 +21,5 @@ urlpatterns = [
 
     # apps
     path('', include('accounts.urls')),
-    path('', include('products.urls')),
+    path('products/', include('products.urls')),
 ]
