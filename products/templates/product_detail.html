@@ -1,0 +1,57 @@
+Single Product Page
+
+<!DOCTYPE html>
+<html>
+<body>
+
+    <br><strong>  {{ products.product_name }}</strong><br/>
+    $ {{ products.amazon_price }}
+    $ {{ products.ebay_price }}
+    {{ products.image }}<br/>
+    {{ products.description }}<br/>
+    {{ products.miscellaneous }}<br/>
+    <strong> Created:</strong>{{ products.created_at }}<br/>
+    <strong>Last Update:</strong>{{ products.updated_at }}<br/>
+    <hr>
+    <strong> Comments</strong>
+    
+    <br/>
+
+    {% for comments in products.comments.all %}
+
+    {% if user.is_authenticated or comment.approved_comment %}
+    <div class="comments">
+        <div class="date">
+            {{ comments.last_update }}
+            {% if not comments.approved_comment %}
+                <a class="btn btn-default" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+                
+            {% endif %}
+        </div>
+        {{ comments.id }}
+    {{ comments.content }}
+    <strong>{{ comments.user }}</strong>
+    {{ comments.last_update }} <br/><a href="{#}">Edit Comment </a>  <br/>
+     <a href="{% url 'deletecomment' pk=comments.id %}">Delete Comment </a>
+    <br/> <br/>
+
+    
+    <hr>
+    <br/>
+    {% endif %}
+    {% empty %}
+    {% endfor %}
+    
+    <a class="btn btn-default" href="{% url 'add_comment' pk=products.pk %}">Add comment</a>
+
+ 
+
+        
+   
+
+
+
+    
+<br/><br/><br/>
+</body>
+</html>

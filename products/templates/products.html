@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Products List</h1>
+
+<p>{% for products in products %}
+    {{ products.id }}. <a href = "{% url 'product_detail' pk=products.pk %}">{{ products.product_name }}</a><br/>
+    Amazon Price: {{ products.amazon_price }}<br/>
+    E-Bay Price: {{ products.ebay_price }}
+    Description: {{ products.description }}<br/>
+    image: {{ products.image }}<br/>
+    Miscellaneous: {{ products.miscellaneous }}<br/>
+    Created: {{ products.created_at }}<br/>
+    Last Update: {{ products.updated_at }}<br/><br/><br/><br/><br/><br/><br/>
+
+    {% endfor %} </p>
+    
+<br/><br/><br/>
+</body>
+</html>
