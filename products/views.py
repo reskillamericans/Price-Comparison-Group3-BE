@@ -26,7 +26,7 @@ def products(request):
 @login_required
 def product_detail(request, pk):
     products = Product.objects.get(id=pk)
-    comments = Comments.objects.get(id=pk)
+    comments = Comments.objects.filter(id=pk)
 
     context = {'products':products, 'comments':comments, 'pk':pk} 
 
@@ -37,31 +37,31 @@ def product_detail(request, pk):
 def add_comment(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == "POST":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comment = form.save(commit=False)
-            comment.product = product
-            comment.save()
-            
-            return redirect('products')
+       
+        user=request.user
+        content=request.POST.get('comment_body')
+        comments=Comments(user=user, content=content, product=product)
+        comments.save()
+        
+        return redirect('product_detail', pk=pk)
     else:
         form = CommentForm()
-    return render(request, 'add_comment.html', {'form': form})
-
-# Add comment to product
-# @login_required
+    return render(request, 'add_comment.html', {'form': form, 'pk':pk})
 
 
-# Add comment to product
-# @login_required
 def deletecomment(request, pk):
-
-    context={}
-    # products = get_object_or_404(Product,id=pk)
-    comments = get_object_or_404(Comments,id=pk)
+    
+    
+    
+    comments = get_object_or_404(pk=pk)
+    
+    
     comments.delete()
     
-    return render(request, 'products', context)
+
+
+        
+    return render(request, 'deletecomment.html')
 
 # Create your views here.
 @login_required
@@ -80,3 +80,5 @@ def edit_comments(request, pk):
     else:
         form = CommentForm()
     return render(request, 'edit_comments', pk)
+
+

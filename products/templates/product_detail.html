@@ -14,7 +14,13 @@ Single Product Page
     <strong>Last Update:</strong>{{ products.updated_at }}<br/>
     <hr>
     <strong> Comments</strong>
-    
+    <form action="{%url 'add_comment' products.id %}" method="POST" id="submitform">
+    {% csrf_token %}
+    <br/>
+    <textarea id="comment_body" name="comment_body" rows="4"
+        cols="50">We appreciate your feedback!</textarea>
+    <p><input type="submit" value="Submit Comment"></p>
+</form>
     <br/>
 
     {% for comments in products.comments.all %}
@@ -32,7 +38,7 @@ Single Product Page
     {{ comments.content }}
     <strong>{{ comments.user }}</strong>
     {{ comments.last_update }} <br/><a href="{#}">Edit Comment </a>  <br/>
-     <a href="{% url 'deletecomment' pk=comments.id %}">Delete Comment </a>
+     <a href="{% url 'deletecomment' products.id %}">Delete Comment </a>
     <br/> <br/>
 
     
@@ -42,7 +48,7 @@ Single Product Page
     {% empty %}
     {% endfor %}
     
-    <a class="btn btn-default" href="{% url 'add_comment' pk=products.pk %}">Add comment</a>
+
 
  
 
