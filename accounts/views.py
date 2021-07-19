@@ -24,24 +24,24 @@ def login_attempt(request):
         user_obj = User.objects.filter(username = username).first()
         if user_obj is None:
             messages.success(request, 'User not found.')
-            return redirect('/accounts/login')
+            return redirect('/signup')
         
         
         profile_obj = Profile.objects.filter(user = user_obj ).first()
 
         if not profile_obj.is_verified:
             messages.success(request, 'Profile is not verified check your mail.')
-            return redirect('/accounts/login')
+            return redirect('/signup')
 
         user = authenticate(username = username , password = password)
         if user is None:
             messages.success(request, 'Wrong password.')
-            return redirect('/accounts/login')
+            return redirect('/signup')
         
         login(request , user)
         return redirect('/')
 
-    return render(request , 'login.html')
+    return render(request , 'signup.html')
 
 def register_attempt(request):
 
@@ -99,11 +99,11 @@ def verify(request , auth_token):
         if profile_obj:
             if profile_obj.is_verified:
                 messages.success(request, 'Your account is already verified.')
-                return redirect('/accounts/login')
+                return redirect('/signup')
             profile_obj.is_verified = True
             profile_obj.save()
             messages.success(request, 'Your account has been verified.')
-            return redirect('/accounts/login')
+            return redirect('/signup')
         else:
             return redirect('/error')
     except Exception as e:
@@ -200,7 +200,7 @@ def resetpage(request):
         
         if user_obj is None:
             messages.success(request, 'User not found.')
-            return redirect('/accounts/login')
+            return redirect('/signup')
         
         profile_obj = Profile.objects.filter(user = user_obj).first()
 
@@ -214,3 +214,7 @@ def resetpage(request):
             return redirect('/resetpage')
     
     return render(request , 'resetpage.html')
+
+
+#def signup(request):
+    #return render(request, 'signup.html')
