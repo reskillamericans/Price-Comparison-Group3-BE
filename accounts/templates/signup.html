@@ -40,30 +40,35 @@
                 <Div class="form" >
                     <div class="floating1" >
                         
-                        <div class="flt">
-                            <input id="input_fname" class="floating_input" name="first-name" type="text" placeholder="First Name">
-                            <label for="input_fname" class="floating_label" data-content="First Name" > <span class="hidden"> First Name </span></label>
-                        </div>
-                        <div class="ltn">
-                            <input id="input_lname" class="floating_input" name="last-name" type="text" placeholder="Last Name">
-                            <label for="input_lname" class="floating_label" data-content="Last Name" > <span class="hidden"> Last Name </span></label>
-                        </div>
-                   </div>
-                    
-                   <div class="floating">
-                        <input id="input_email" class="floating_input" name="email" type="email" placeholder="Email">
-                        <label for="input_email" class="floating_label" data-content="Email" > <span class="hidden"> Email </span></label>
-                   </div>
-                   
-                    <div class="floating" id="float">
-                        <input id="input_number" class="floating_input" name="Number" type="number" placeholder="Phone Number">
-                        <label for="input_number" class="floating_label" data-content="Phone Number" > <span class="hidden"> Phone Number </span></label>
-                    </div>
+                        <form action="{% url 'register_attempt' %}" method="POST">
+                            <h3>{{ form.username.label }}</h3>
+                            {{ form.username.errors.as_text|escape }}
+                            {{ form.username }}
+                            <h5><i>{{ form.username.help_text }}</i></h5>
+                            <br/>
                 
-                    <div class="floating">
+                            <h3>{{ form.email.label }}</h3>
+                            {{ form.email.errors.as_text|escape }}
+                            {{ form.email }}
+                            <h5><i>{{ form.email.help_text }}</i></h5>
+                            <br/>
                 
-                        <input id="input_password" class="floating_input" name="password" type="password" placeholder="Password"> <span><input type="checkbox" onclick="myFunction()">Show</span>
-                        <label for="input_password" class="floating_label" data-content="Password" > <span class="hidden"> Password </span></label>
+                            <h3>{{ form.first_name.label }}</h3>
+                            {{ form.first_name.errors.as_text|escape }}
+                            {{ form.first_name }}
+                            <br/><br/>
+                
+                            <h3>{{ form.last_name.label }}</h3>
+                            {{ form.last_name.errors.as_text|escape }}
+                            {{ form.last_name }}
+                            <br/><br/>
+                
+                            <h3>{{ form.password1.label }}</h3>
+                            {{ form.password1.errors.as_text|escape }}
+                            {{ form.password1 }}
+                
+                            <p><input type="submit" value="Sign Up"></p>
+                        </form>
                     </div>
                 
                     

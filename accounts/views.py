@@ -8,6 +8,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.contrib.auth import authenticate,login
 from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm
 # Create your views here.
 
 @login_required
@@ -45,11 +46,12 @@ def login_attempt(request):
 
 def register_attempt(request):
 
+    form = RegisterForm()
+
     if request.method == 'POST':
+        form = RegisterForm(request.POST)
         username = request.POST.get('username')
-        email = request.POST.get('email')
         password = request.POST.get('password')
-        print(password)
 
         try:
             if User.objects.filter(username = username).first():
