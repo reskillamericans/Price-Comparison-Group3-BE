@@ -19,56 +19,51 @@
                 <li><a href="/Product.html">Products</a></li>
                 <li><a href="/faq.html">FAQS</a></li>
                 <li><a href="/Contact.html">Contact Us</a></li>
-                <li><a href="/signup.html">Register</a></li>
+                <li><a href="/Signup.html">Register</a></li>
             </ul>
         </nav>
     </header>
     <Section class="Main">
-        {% if messages %}
-                
-                        {% for message in messages %}
-                        <div class="alert alert-info">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                  
-                    {% endif %}
         
         <div class="main-content">
             <div class="card">
                 <div class="rg"><h1>Register Here</h1></div>
-                <Div class="form" >
+                <form action="{% url 'register_attempt' %}" method="POST">
                     <div class="floating1" >
                         
-                        <form action="{% url 'register_attempt' %}" method="POST">
-                            <h3>{{ form.username.label }}</h3>
-                            {{ form.username.errors.as_text|escape }}
-                            {{ form.username }}
-                            <h5><i>{{ form.username.help_text }}</i></h5>
-                            <br/>
+                        <div class="flt">
+                            <div class="form-group"></div>
+                                <input id="input_fname" class="form-control" name="firstName" type="text" placeholder="First Name">
+                                <label for="input_fname" class="floating_label" data-content="firstName" > <span class="hidden"> First Name </span></label>
+                            </div>
+                        </div>
+                        <div class="ltn">
+                            <div class="form-group"></div>
+                                <input id="input_lname" class="form-control" name="lastName" type="text" placeholder="Last Name">
+                                <label for="input_lname" class="floating_label" data-content="lastName" > <span class="hidden"> Last Name </span></label>
+                            </div>
+                        </div>
+                   </div>
+                    
+                   <div class="floating">
+                        <div class="form-group"></div>
+                            <input id="input_email" class="form-control" name="email" type="email" placeholder="Email">
+                            <label for="input_email" class="floating_label" data-content="email" > <span class="hidden"> Email </span></label>
+                        </div>
+                   </div>
+                   
+                    <div class="floating" id="float">
+                        <div class="form-group"></div>
+                            <input id="input_number" class="form-control" name="phoneNumber" type="number" placeholder="Phone Number">
+                            <label for="input_number" class="floating_label" data-content="phoneNumber" > <span class="hidden"> Phone Number </span></label>
+                        </div>
+                    </div>
                 
-                            <h3>{{ form.email.label }}</h3>
-                            {{ form.email.errors.as_text|escape }}
-                            {{ form.email }}
-                            <h5><i>{{ form.email.help_text }}</i></h5>
-                            <br/>
-                
-                            <h3>{{ form.first_name.label }}</h3>
-                            {{ form.first_name.errors.as_text|escape }}
-                            {{ form.first_name }}
-                            <br/><br/>
-                
-                            <h3>{{ form.last_name.label }}</h3>
-                            {{ form.last_name.errors.as_text|escape }}
-                            {{ form.last_name }}
-                            <br/><br/>
-                
-                            <h3>{{ form.password1.label }}</h3>
-                            {{ form.password1.errors.as_text|escape }}
-                            {{ form.password1 }}
-                
-                            <p><input type="submit" value="Sign Up"></p>
-                        </form>
+                    <div class="floating">
+                        <div class="form-group"></div>
+                            <input id="input_password" class="form-control" name="password" type="password" placeholder="Password"> <span><input type="checkbox" onclick="myFunction()">Show</span>
+                            <label for="input_password" class="floating_label" data-content="password" > <span class="hidden"> Password </span></label>
+                        </div>
                     </div>
                 
                     
@@ -76,34 +71,30 @@
                     <p> by Creating an accout you agree to our <a class="terms" href="#">User Agreement</a> and acknowledge reading our u
                     <span> <a class="terms" href="#">User Privacy Notice</a>.</span></p> 
                      
-                    <button class="create">Create Account</button>
+                    <button type="submit" class="create">Create Account</button>
                 </Div>
             </div>
             <div class="social">
-
+                
                 <div class="lg"><h1>Login</h1></div>
                 <div class="social-buttons">
                     <button class="google"> <img class="ggle" src="https://img.icons8.com/color/48/000000/google-logo.png"/></i>Login with Google</button>
                     <button class="facebook"> <img class="fb" src="https://img.icons8.com/color/48/000000/facebook.png"/>Login with Facebook</button>
                     <button class="Apple"><img class="appl" src="https://img.icons8.com/ios-filled/50/000000/mac-os.png"/>Login with Apple</button>
                 </div>
-                <form method="post" >
-                    {% csrf_token %}
-                    <!-- to error: add class "has-danger" -->
-                    <div class="lg-email"><h5>or login with Username</h5></div>
-                    <div class="login-form">
-                        <input id="exampleInputEmail1" name="username" class="login-input" type="text" placeholder="Username"> 
-                        <input id="exampleInputPassword1" name="password" class="login-input" type="password" placeholder="Password">
-                    
-                        <input id="checkbox" type="checkbox">
-                        <label class="remember" for="checkbox"> Remember Me</label>
-            
-                        <a href="{% url 'reset_attempt' %}" class="forget-pass" href="#"> Forgot Password?</a>
-    
-                        <button type="submit" class="login-btn"> Login</button>
-    
-                    </div>
-                </form>
+                <div class="lg-email"><h5>or login with Email</h5></div>
+                <div class="login-form">
+                    <input id="login-email" class="login-input" type="email" placeholder="Email"> 
+                    <input  id= "password2" class="login-input" type="Password" placeholder="Password">
+                
+                    <input id="checkbox" type="checkbox">
+                    <label class="remember" for="checkbox"> Remember Me</label>
+        
+                    <a class="forget-pass" href="#"> Forget Password</a>
+
+                    <button class="login-btn"> Login</button>
+
+                </div>
             </div>
         </div>
     </Section> 
