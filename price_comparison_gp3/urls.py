@@ -22,4 +22,5 @@ urlpatterns = [
     # apps
     path('' , include('accounts.urls')),
     path('products/', include('products.urls')),
+    path('contact/', include('contact.urls')),
 ]
