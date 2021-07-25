@@ -2,7 +2,8 @@
 
 from django.contrib.auth.models import User
 from django.db import models
-from accounts.models import User
+
+
 
 
 
@@ -13,8 +14,9 @@ class Product(models.Model):
     ebay_price = models.DecimalField(max_digits=100, decimal_places=2, default=True)
     description = models.TextField(blank=True, null=True)
     miscellaneous = models.CharField(max_length=3000, blank=True, null=True)
+    rating = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
    
 
@@ -26,8 +28,9 @@ class Comments(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
     content = models.TextField(max_length=3000, blank=True, null=True)
-    last_update = models.DateTimeField(auto_now_add=True)
+    last_update = models.DateTimeField(auto_now=True)
     approved_comment = models.BooleanField(default=False)
+    number_of_comments = models.IntegerField(blank=True, null=True)
 
     def approve(user):
         user.approved_comment = True

@@ -1,2 +1,12 @@
-{{ products.product_name }}
-{{ comments.last_update }}
+
+<h1>Edit Comment</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p  }}
+    
+    <input type="submit" value="Submit"></button>
+    <a href = "{% url 'product_detail' pk }"> </a><input type="submit" value="Cancel"></button>
+
+</form> 
+
+

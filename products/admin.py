@@ -12,6 +12,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ('product','content', 'last_update', 'user', 'id', 'pk')
     list_filter = ['product', 'last_update']
     search_fields = ['product','content', 'last_update', 'user']
+    
 
 
 admin.site.register(Product, ProductAdmin)

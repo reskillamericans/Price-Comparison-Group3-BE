@@ -1,34 +1,29 @@
-from django.http import HttpResponse
+
 from django.http.response import HttpResponseRedirect
-
-
-
+from django.urls import reverse
 from .models import Product, Comments
-from products.forms import CommentForm, ProductForm
+from .forms import CommentForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 
-# def index(request):
-    # return HttpResponse("Hello, Welcome to the Price Comparison Tool.")
-
 
 
 # List of products
-@login_required
+
 def products(request):
     
-    context ={'products': Product.objects.all()
+    context ={'products': Product.objects.all()[:10]
     }
+    
     return render(request, "products.html", context)
 
-# Specific product
-@login_required
+# Specific product detail
+
 def product_detail(request, pk):
     products = Product.objects.get(id=pk)
-    comments = Comments.objects.filter(id=pk)
-
-    context = {'products':products, 'comments':comments, 'pk':pk} 
+    
+    context = {'products':products,'pk':pk} 
 
     return render(request, "product_detail.html", context)
 
@@ -48,37 +43,35 @@ def add_comment(request, pk):
         form = CommentForm()
     return render(request, 'add_comment.html', {'form': form, 'pk':pk})
 
-
-def deletecomment(request, pk):
-    
-    
-    
-    comments = get_object_or_404(pk=pk)
-    
-    
-    comments.delete()
-    
-
-
-        
-    return render(request, 'deletecomment.html')
-
-# Create your views here.
+# Delete comment
 @login_required
-def edit_comments(request, pk):
-    
-    comments = Comments.objects.get()
-    
-    if request.method == "GET":
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comments = form.save(commit=False)
-            comments.comment = comments
-            comments.save()
-            
-            return redirect('products')
+def deletecomment(request, id, pk):
+    context={}
+    comments = get_object_or_404(Comments, id=id)
+    product = get_object_or_404(Product, pk=pk)
+    request.user=comments.user
+    if request.method =="POST":
+        comments.delete()
+        return HttpResponseRedirect(reverse('product_detail', kwargs={"pk": product.pk}))
     else:
-        form = CommentForm()
-    return render(request, 'edit_comments', pk)
+        return render(request, "deletecomment.html", context)
+
+
+# Edit Comment
+@login_required
+def edit_comments(request, id, pk):
+    
+    product = get_object_or_404(Product, pk=pk)
+    comments = Comments.objects.get(id=id)
+    if request.method == 'POST':
+        request.user=comments.user
+        form = CommentForm(request.POST, instance=comments)
+        
+        form.save()
+            
+        return HttpResponseRedirect(reverse('product_detail', kwargs={"pk": product.pk}))
+    else:
+        form=CommentForm(instance=comments)
+    return render(request, 'edit_comments.html', {'form':form, 'comments':comments, 'pk':pk})
 
 

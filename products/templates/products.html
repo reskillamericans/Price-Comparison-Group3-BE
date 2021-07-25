@@ -7,13 +7,14 @@
 <p>{% for products in products %}
     {{ products.id }}. <a href = "{% url 'product_detail' pk=products.pk %}">{{ products.product_name }}</a><br/>
     Amazon Price: {{ products.amazon_price }}<br/>
-    E-Bay Price: {{ products.ebay_price }}
+    E-Bay Price: {{ products.ebay_price }}<br/>
+    Rating: {{ products.rating }}<br/>
     Description: {{ products.description }}<br/>
     image: {{ products.image }}<br/>
     Miscellaneous: {{ products.miscellaneous }}<br/>
     Created: {{ products.created_at }}<br/>
     Last Update: {{ products.updated_at }}<br/><br/><br/><br/><br/><br/><br/>
-
+    {% csrf_token %}
     {% endfor %} </p>
     
 <br/><br/><br/>

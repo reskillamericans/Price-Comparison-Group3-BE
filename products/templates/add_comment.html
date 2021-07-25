@@ -1,5 +1,5 @@
 Add Comment
-<form method="{%url 'add_comment' product.id %}" method="POST" id="submitform"}
+<form action="{%url 'add_comment' product.pk %}" method="POST" id="submitform"}>
     {% csrf_token %}
     <br/>
     <textarea id="comment_body" name="comment_body" rows="4"
