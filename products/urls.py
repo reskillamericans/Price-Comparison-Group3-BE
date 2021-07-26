@@ -1,12 +1,17 @@
-
 from django.urls import path
 from . import views
 
+app_name = 'products'
 urlpatterns = [
-    path('products', views.product_list, name="products"),
-    path('new_comment', views.new_comment, name='new_comment'),
-    path('edit_comment', views.edit_comment, name='edit_comment'),
-    path('delete_comment', views.delete_comment, name='delete_comment'),
+    path('index', views.index, name='index'),
+    # Products
+    path('', views.ProductListView.as_view(), name='product_list'),
+    path('<int:pk>/', views.ProductDetailView.as_view(), name='product_detail'),
 
+    # Likes
+    path('like/', views.like_button, name='like'),
 
-]
+    # Add and Delete Product
+    path('add_products/', views.add_product_view, name='add_products'),
+    path('delete_product/<int:product_id>', views.delete_product, name='delete_product'),
+    ]

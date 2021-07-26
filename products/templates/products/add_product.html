@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/Item.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+
+    <title>{{ product.product_name }}</title>
+
+    <style>
+        .productImage img{
+            width: 543px;
+            height: 407px;
+            margin-right: 100px;
+        }
+
+        .productName{
+            margin-left: 30px;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<header>
+    <nav class="navBar">
+        <ul class="navLinks">
+            <li><a href="">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="{% url 'products:product_list' %}">Products</a></li>
+            <li><a href="">FAQS</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="{% url 'register_attempt' %}">Register</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="productName">
+    <h1>Add a Product</h1>
+</div>
+{% if messages %}
+<div>
+    <ul style="display: table; margin: 0 auto;">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<div style="text-align: center;">
+    <form action="{% url 'products:add_products' %}" method="POST">
+        {% csrf_token %}
+        <h3>{{ form.amazon_asin.label }}</h3>
+        {{ form.amazon_asin }}
+        {{ form.amazon_asin.errors.as_text|escape }}
+        <br/><br/>
+
+        <h3>{{ form.ebay_url.label }}</h3>
+        {{ form.ebay_url }}
+        {{ form.ebay_url.errors.as_text|escape }}
+
+        <p><input type="submit" value="Add Product"></p>
+    </form>
+</div>
+
+</body>
+</html>
