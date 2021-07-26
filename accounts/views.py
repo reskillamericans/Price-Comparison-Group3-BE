@@ -147,7 +147,11 @@ def send_mail_after_registration(email , token):
     recipient_list = [email]
     send_mail(subject, message , email_from ,recipient_list )
 
+    
+def faq(request):
+    return render(request , 'faq.html')
 
+  
 def send_mail_password_reset(email , token):
     subject = 'Reset your password'
     message = f'Hi paste the link to reset your password http://127.0.0.1:8000/resetting/{token}'
