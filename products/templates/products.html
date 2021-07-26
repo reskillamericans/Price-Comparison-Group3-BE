@@ -4,6 +4,7 @@
 
 <h1>Products List</h1>
 
+
 <p>{% for products in products %}
     {{ products.id }}. <a href = "{% url 'product_detail' pk=products.pk %}">{{ products.product_name }}</a><br/>
     Amazon Price: {{ products.amazon_price }}<br/>
