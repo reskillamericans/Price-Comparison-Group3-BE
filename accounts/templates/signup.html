@@ -29,50 +29,42 @@
             <div class="card">
                 <div class="rg"><h1>Register Here</h1></div>
                 <form action="{% url 'register_attempt' %}" method="POST">
-                    <div class="floating1" >
+                    <Div class="form" >
+                        <div class="floating1" >
+                            <div class="flt">
+                                <input id="input_fname" class="floating_input" name="firstname" type="text" placeholder="First Name">
+                                <label for="input_fname" class="floating_label" data-content="First Name" > <span class="hidden"> First Name </span></label>
+                            </div>
+                            <div class="ltn">
+                                <input id="input_lname" class="floating_input" name="lastname" type="text" placeholder="Last Name">
+                                <label for="input_lname" class="floating_label" data-content="Last Name" > <span class="hidden"> Last Name </span></label>
+                            </div>
+                    </div>
                         
-                        <div class="flt">
-                            <div class="form-group"></div>
-                                <input id="input_fname" class="form-control" name="firstName" type="text" placeholder="First Name">
-                                <label for="input_fname" class="floating_label" data-content="firstName" > <span class="hidden"> First Name </span></label>
-                            </div>
-                        </div>
-                        <div class="ltn">
-                            <div class="form-group"></div>
-                                <input id="input_lname" class="form-control" name="lastName" type="text" placeholder="Last Name">
-                                <label for="input_lname" class="floating_label" data-content="lastName" > <span class="hidden"> Last Name </span></label>
-                            </div>
-                        </div>
-                   </div>
-                    
-                   <div class="floating">
-                        <div class="form-group"></div>
-                            <input id="input_email" class="form-control" name="email" type="email" placeholder="Email">
-                            <label for="input_email" class="floating_label" data-content="email" > <span class="hidden"> Email </span></label>
-                        </div>
-                   </div>
-                   
-                    <div class="floating" id="float">
-                        <div class="form-group"></div>
-                            <input id="input_number" class="form-control" name="phoneNumber" type="number" placeholder="Phone Number">
-                            <label for="input_number" class="floating_label" data-content="phoneNumber" > <span class="hidden"> Phone Number </span></label>
-                        </div>
-                    </div>
-                
                     <div class="floating">
-                        <div class="form-group"></div>
-                            <input id="input_password" class="form-control" name="password" type="password" placeholder="Password"> <span><input type="checkbox" onclick="myFunction()">Show</span>
-                            <label for="input_password" class="floating_label" data-content="password" > <span class="hidden"> Password </span></label>
-                        </div>
+                            <input id="input_email" class="floating_input" name="email" type="email" placeholder="Email">
+                            <label for="input_email" class="floating_label" data-content="Email" > <span class="hidden"> Email </span></label>
                     </div>
-                
                     
-                     
-                    <p> by Creating an accout you agree to our <a class="terms" href="#">User Agreement</a> and acknowledge reading our u
-                    <span> <a class="terms" href="#">User Privacy Notice</a>.</span></p> 
-                     
-                    <button type="submit" class="create">Create Account</button>
-                </Div>
+                        <div class="floating" id="float">
+                            <input id="input_number" class="floating_input" name="number" type="number" placeholder="Phone Number">
+                            <label for="input_number" class="floating_label" data-content="Phone Number" > <span class="hidden"> Phone Number </span></label>
+                        </div>
+                    
+                        <div class="floating">
+                    
+                            <input id="input_password" class="floating_input" name="password" type="password" placeholder="Password"> <span><input type="checkbox" onclick="myFunction()">Show</span>
+                            <label for="input_password" class="floating_label" data-content="Password" > <span class="hidden"> Password </span></label>
+                        </div>
+                    
+                        
+                        
+                        <p> by Creating an accout you agree to our <a class="terms" href="#">User Agreement</a> and acknowledge reading our u
+                        <span> <a class="terms" href="#">User Privacy Notice</a>.</span></p> 
+                        
+                        <button class="create">Create Account</button>
+                    </Div>
+                </form>
             </div>
             <div class="social">
                 
@@ -83,18 +75,20 @@
                     <button class="Apple"><img class="appl" src="https://img.icons8.com/ios-filled/50/000000/mac-os.png"/>Login with Apple</button>
                 </div>
                 <div class="lg-email"><h5>or login with Email</h5></div>
-                <div class="login-form">
-                    <input id="login-email" class="login-input" type="email" placeholder="Email"> 
-                    <input  id= "password2" class="login-input" type="Password" placeholder="Password">
-                
-                    <input id="checkbox" type="checkbox">
-                    <label class="remember" for="checkbox"> Remember Me</label>
-        
-                    <a class="forget-pass" href="#"> Forget Password</a>
+                <form action="{% url 'login_attempt' %}" method="POST"></form>
+                    <div class="login-form">
+                        <input id="login-email" class="login-input" type="email" placeholder="Email"> 
+                        <input  id= "password2" class="login-input" type="Password" placeholder="Password">
+                    
+                        <input id="checkbox" type="checkbox">
+                        <label class="remember" for="checkbox"> Remember Me</label>
+            
+                        <a class="forget-pass" href="#"> Forget Password</a>
 
-                    <button class="login-btn"> Login</button>
+                        <button class="login-btn"> Login</button>
 
-                </div>
+                    </div>
+                </form>
             </div>
         </div>
     </Section> 

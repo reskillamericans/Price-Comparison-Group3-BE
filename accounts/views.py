@@ -46,10 +46,10 @@ def login_attempt(request):
 def register_attempt(request):
 
     if request.method == 'POST':
-        firstName = request.POST.get('firstName')
-        lastName = request.POST.get('lastName')
+        firstName = request.POST.get('firstname')
+        lastName = request.POST.get('lastname')
         email = request.POST.get('email')
-        phoneNumber = request.POST.get('phoneNumber')
+        phoneNumber = request.POST.get('number')
         password = request.POST.get('password')
         print(password)
 
@@ -59,7 +59,7 @@ def register_attempt(request):
                 messages.success(request, 'Email is taken.')
                 return redirect('/register')
             
-            user_obj = User(email = email)
+            user_obj = User(email = email , firstname = firstname , lastname = lastname , number = number)
             user_obj.set_password(password)
             user_obj.save()
             auth_token = str(uuid.uuid4())
