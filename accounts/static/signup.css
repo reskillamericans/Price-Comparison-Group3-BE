@@ -5,8 +5,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: #f4f0ed; 
-    background-image:url(/images/register_images/Group\ 70.png), url(/images/register_images/Group\ 70.png),
-     url(/images/register_images/Group\ 81.png), url(/images/register_images/Group\ 82.png) ;
+    background-image:url("/static/Group 70.png"), url("/static/Group 70.png"),
+    url("/static/Group 81.png"), url("/static/Group 82.png") ;
     background-repeat: no-repeat;
     background-size: 8%, 8%, 9%,9%;
     background-position: 79% 17%, 14% 72%, bottom left, bottom right;
@@ -41,7 +41,7 @@ header{
     margin: 0px;
     max-width: 100%;
     height: 100px;
-    background: url(images/register_images/PricedOut___1.svg); 
+    background: url("/static/PricedOut___1.svg"); 
     background-repeat: no-repeat;
     background-position-x: 10px;
     background-position-y: -120px;
@@ -237,7 +237,7 @@ padding: 0px 20px;
     margin-bottom: 1rem;
     background-color: #f4f0ed;
     border-color : rgb(184, 184, 184);
-    border-radius: 5px;
+    border-radius: 6px;
     box-shadow: none;
     width: 100%;
     height: 45px;
@@ -247,7 +247,7 @@ padding: 0px 20px;
     
  }
  .remember{
-     padding-right: 10rem;
+     padding-right: 9rem;
      margin-bottom: 1rem;
      display: inline-block;
  }
@@ -264,7 +264,7 @@ padding: 0px 20px;
     font-size: 14px;
     font-weight: 400;
     background-color:hsl(32, 96%, 52%);
-    width: 75%;
+    width: 85%;
     padding: 15px;
     border-radius: 5px;
     border: none;
@@ -279,8 +279,8 @@ padding: 0px 20px;
          height:210vh;
          padding: 0;
          margin: 0;
-         background-image:url(/images/register_images/Group\ 70.png), url(/images/register_images/Group\ 70.png),
-         url(/images/register_images/Group\ 81.png), url(/images/register_images/Group\ 82.png) ;
+         background-image:url("/static/Group 70.png"), url("/static/Group 70.png"), 
+         url("/static/Group 81.png"), url("/static/Group 82.png") ;
          background-repeat: no-repeat;
          background-size: 10%, 10%, 14%,14%;
          background-position: 68% 16%, 11% 66%, 0% 100%, bottom right;

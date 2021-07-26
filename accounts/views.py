@@ -17,49 +17,48 @@ def home(request):
 
 def login_attempt(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
 
-        user_obj = User.objects.filter(username = username).first()
+        user_obj = User.objects.filter(email = email).first()
         if user_obj is None:
             messages.success(request, 'User not found.')
-            return redirect('/signup')
+            return redirect('/login')
         
         
         profile_obj = Profile.objects.filter(user = user_obj ).first()
 
         if not profile_obj.is_verified:
             messages.success(request, 'Profile is not verified check your mail.')
-            return redirect('/signup')
+            return redirect('/login')
 
-        user = authenticate(username = username , password = password)
+        user = authenticate(email = email , password = password)
         if user is None:
             messages.success(request, 'Wrong password.')
-            return redirect('/signup')
+            return redirect('/login')
         
         login(request, user)
         return redirect('/')
 
-    return render(request , 'signup.html')
+    return render(request , 'login.html')
 
 def register_attempt(request):
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        firstName = request.POST.get('firstname')
+        lastName = request.POST.get('lastname')
         email = request.POST.get('email')
+        phoneNumber = request.POST.get('number')
         password = request.POST.get('password')
         print(password)
 
         try:
-            if User.objects.filter(username = username).first():
-                messages.success(request, 'Username is taken.')
-                return redirect('/register')
 
             if User.objects.filter(email = email).first():
                 messages.success(request, 'Email is taken.')
                 return redirect('/register')
             
-            user_obj = User(username = username , email = email)
+            user_obj = User(email = email , firstname = firstname , lastname = lastname , number = number)
             user_obj.set_password(password)
             user_obj.save()
             auth_token = str(uuid.uuid4())
@@ -98,11 +97,11 @@ def verify(request , auth_token):
         if profile_obj:
             if profile_obj.is_verified:
                 messages.success(request, 'Your account is already verified.')
-                return redirect('/signup')
+                return redirect('/login')
             profile_obj.is_verified = True
             profile_obj.save()
             messages.success(request, 'Your account has been verified.')
-            return redirect('/signup')
+            return redirect('/login')
         else:
             return redirect('/error')
     except Exception as e:
@@ -194,16 +193,16 @@ def reset_attempt(request):
 def resetpage(request):
  
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
         print(password)
 
         
-        user_obj = User.objects.filter(username = username).first()
+        user_obj = User.objects.filter(email = email).first()
         
         if user_obj is None:
             messages.success(request, 'User not found.')
-            return redirect('/signup')
+            return redirect('/login')
         
         profile_obj = Profile.objects.filter(user = user_obj).first()
 
@@ -217,3 +216,7 @@ def resetpage(request):
             return redirect('/resetpage')
     
     return render(request , 'resetpage.html')
+
+
+def signup(request):
+    return render(request, 'signup.html')

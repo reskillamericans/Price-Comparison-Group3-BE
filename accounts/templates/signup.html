@@ -19,84 +19,74 @@
                 <li><a href="/Product.html">Products</a></li>
                 <li><a href="/faq.html">FAQS</a></li>
                 <li><a href="/Contact.html">Contact Us</a></li>
-                <li><a href="/signup.html">Register</a></li>
+                <li><a href="/Signup.html">Register</a></li>
             </ul>
         </nav>
     </header>
     <Section class="Main">
-        {% if messages %}
-                
-                        {% for message in messages %}
-                        <div class="alert alert-info">
-                            {{ message }}
-                        </div>
-                        {% endfor %}
-                  
-                    {% endif %}
         
         <div class="main-content">
             <div class="card">
                 <div class="rg"><h1>Register Here</h1></div>
-                <Div class="form" >
-                    <div class="floating1" >
+                <form action="{% url 'register_attempt' %}" method="POST">
+                    <Div class="form" >
+                        <div class="floating1" >
+                            <div class="flt">
+                                <input id="input_fname" class="floating_input" name="firstname" type="text" placeholder="First Name">
+                                <label for="input_fname" class="floating_label" data-content="First Name" > <span class="hidden"> First Name </span></label>
+                            </div>
+                            <div class="ltn">
+                                <input id="input_lname" class="floating_input" name="lastname" type="text" placeholder="Last Name">
+                                <label for="input_lname" class="floating_label" data-content="Last Name" > <span class="hidden"> Last Name </span></label>
+                            </div>
+                    </div>
                         
-                        <div class="flt">
-                            <input id="input_fname" class="floating_input" name="first-name" type="text" placeholder="First Name">
-                            <label for="input_fname" class="floating_label" data-content="First Name" > <span class="hidden"> First Name </span></label>
-                        </div>
-                        <div class="ltn">
-                            <input id="input_lname" class="floating_input" name="last-name" type="text" placeholder="Last Name">
-                            <label for="input_lname" class="floating_label" data-content="Last Name" > <span class="hidden"> Last Name </span></label>
-                        </div>
-                   </div>
-                    
-                   <div class="floating">
-                        <input id="input_email" class="floating_input" name="email" type="email" placeholder="Email">
-                        <label for="input_email" class="floating_label" data-content="Email" > <span class="hidden"> Email </span></label>
-                   </div>
-                   
-                    <div class="floating" id="float">
-                        <input id="input_number" class="floating_input" name="Number" type="number" placeholder="Phone Number">
-                        <label for="input_number" class="floating_label" data-content="Phone Number" > <span class="hidden"> Phone Number </span></label>
-                    </div>
-                
                     <div class="floating">
-                
-                        <input id="input_password" class="floating_input" name="password" type="password" placeholder="Password"> <span><input type="checkbox" onclick="myFunction()">Show</span>
-                        <label for="input_password" class="floating_label" data-content="Password" > <span class="hidden"> Password </span></label>
+                            <input id="input_email" class="floating_input" name="email" type="email" placeholder="Email">
+                            <label for="input_email" class="floating_label" data-content="Email" > <span class="hidden"> Email </span></label>
                     </div>
-                
                     
-                     
-                    <p> by Creating an accout you agree to our <a class="terms" href="#">User Agreement</a> and acknowledge reading our u
-                    <span> <a class="terms" href="#">User Privacy Notice</a>.</span></p> 
-                     
-                    <button class="create">Create Account</button>
-                </Div>
+                        <div class="floating" id="float">
+                            <input id="input_number" class="floating_input" name="number" type="number" placeholder="Phone Number">
+                            <label for="input_number" class="floating_label" data-content="Phone Number" > <span class="hidden"> Phone Number </span></label>
+                        </div>
+                    
+                        <div class="floating">
+                    
+                            <input id="input_password" class="floating_input" name="password" type="password" placeholder="Password"> <span><input type="checkbox" onclick="myFunction()">Show</span>
+                            <label for="input_password" class="floating_label" data-content="Password" > <span class="hidden"> Password </span></label>
+                        </div>
+                    
+                        
+                        
+                        <p> by Creating an accout you agree to our <a class="terms" href="#">User Agreement</a> and acknowledge reading our u
+                        <span> <a class="terms" href="#">User Privacy Notice</a>.</span></p> 
+                        
+                        <button class="create">Create Account</button>
+                    </Div>
+                </form>
             </div>
             <div class="social">
-
+                
                 <div class="lg"><h1>Login</h1></div>
                 <div class="social-buttons">
                     <button class="google"> <img class="ggle" src="https://img.icons8.com/color/48/000000/google-logo.png"/></i>Login with Google</button>
                     <button class="facebook"> <img class="fb" src="https://img.icons8.com/color/48/000000/facebook.png"/>Login with Facebook</button>
                     <button class="Apple"><img class="appl" src="https://img.icons8.com/ios-filled/50/000000/mac-os.png"/>Login with Apple</button>
                 </div>
-                <form method="post" >
-                    {% csrf_token %}
-                    <!-- to error: add class "has-danger" -->
-                    <div class="lg-email"><h5>or login with Username</h5></div>
+                <div class="lg-email"><h5>or login with Email</h5></div>
+                <form action="{% url 'login_attempt' %}" method="POST"></form>
                     <div class="login-form">
-                        <input id="exampleInputEmail1" name="username" class="login-input" type="text" placeholder="Username"> 
-                        <input id="exampleInputPassword1" name="password" class="login-input" type="password" placeholder="Password">
+                        <input id="login-email" class="login-input" type="email" placeholder="Email"> 
+                        <input  id= "password2" class="login-input" type="Password" placeholder="Password">
                     
                         <input id="checkbox" type="checkbox">
                         <label class="remember" for="checkbox"> Remember Me</label>
             
-                        <a href="{% url 'reset_attempt' %}" class="forget-pass" href="#"> Forgot Password?</a>
-    
-                        <button type="submit" class="login-btn"> Login</button>
-    
+                        <a class="forget-pass" href="#"> Forget Password</a>
+
+                        <button class="login-btn"> Login</button>
+
                     </div>
                 </form>
             </div>
