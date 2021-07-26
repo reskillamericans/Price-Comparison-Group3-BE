@@ -1,13 +1,12 @@
 import json
-
 import requests
 from django.contrib import messages
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views import generic
-
 from test_files import ebay_products, amazon_products
 from .forms import AddProductForm
 from .models import Product, LikeButton
