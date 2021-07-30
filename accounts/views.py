@@ -12,33 +12,32 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-    return render(request , 'home.html')
-
+    return render(request , 'products.html')
 
 
 def login_attempt(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
 
-        user_obj = User.objects.filter(username = username).first()
+        user_obj = User.objects.filter(email = email).first()
         if user_obj is None:
             messages.success(request, 'User not found.')
-            return redirect('/accounts/login')
+            return redirect('/login')
         
         
         profile_obj = Profile.objects.filter(user = user_obj ).first()
 
         if not profile_obj.is_verified:
             messages.success(request, 'Profile is not verified check your mail.')
-            return redirect('/accounts/login')
+            return redirect('/login')
 
-        user = authenticate(username = username , password = password)
+        user = authenticate(email = email , password = password)
         if user is None:
             messages.success(request, 'Wrong password.')
-            return redirect('/accounts/login')
+            return redirect('/login')
         
-        login(request , user)
+        login(request, user)
         return redirect('/')
 
     return render(request , 'login.html')
@@ -46,21 +45,20 @@ def login_attempt(request):
 def register_attempt(request):
 
     if request.method == 'POST':
-        username = request.POST.get('username')
+        firstName = request.POST.get('firstname')
+        lastName = request.POST.get('lastname')
         email = request.POST.get('email')
+        phoneNumber = request.POST.get('number')
         password = request.POST.get('password')
         print(password)
 
         try:
-            if User.objects.filter(username = username).first():
-                messages.success(request, 'Username is taken.')
-                return redirect('/register')
 
             if User.objects.filter(email = email).first():
                 messages.success(request, 'Email is taken.')
                 return redirect('/register')
             
-            user_obj = User(username = username , email = email)
+            user_obj = User(email = email , firstname = firstname , lastname = lastname , number = number)
             user_obj.set_password(password)
             user_obj.save()
             auth_token = str(uuid.uuid4())
@@ -99,11 +97,11 @@ def verify(request , auth_token):
         if profile_obj:
             if profile_obj.is_verified:
                 messages.success(request, 'Your account is already verified.')
-                return redirect('/accounts/login')
+                return redirect('/login')
             profile_obj.is_verified = True
             profile_obj.save()
             messages.success(request, 'Your account has been verified.')
-            return redirect('/accounts/login')
+            return redirect('/login')
         else:
             return redirect('/error')
     except Exception as e:
@@ -148,7 +146,11 @@ def send_mail_after_registration(email , token):
     recipient_list = [email]
     send_mail(subject, message , email_from ,recipient_list )
 
+    
+def faq(request):
+    return render(request , 'faq.html')
 
+  
 def send_mail_password_reset(email , token):
     subject = 'Reset your password'
     message = f'Hi paste the link to reset your password http://127.0.0.1:8000/resetting/{token}'
@@ -191,16 +193,16 @@ def reset_attempt(request):
 def resetpage(request):
  
     if request.method == 'POST':
-        username = request.POST.get('username')
+        email = request.POST.get('email')
         password = request.POST.get('password')
         print(password)
 
         
-        user_obj = User.objects.filter(username = username).first()
+        user_obj = User.objects.filter(email = email).first()
         
         if user_obj is None:
             messages.success(request, 'User not found.')
-            return redirect('/accounts/login')
+            return redirect('/login')
         
         profile_obj = Profile.objects.filter(user = user_obj).first()
 
@@ -214,3 +216,7 @@ def resetpage(request):
             return redirect('/resetpage')
     
     return render(request , 'resetpage.html')
+
+
+def signup(request):
+    return render(request, 'signup.html')

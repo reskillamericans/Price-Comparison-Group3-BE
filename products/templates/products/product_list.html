@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+</head>
+<body>
+<!-- Mobile Header  -->
+<div id="mobile-menu" class="mobile-header">
+    <div id="exit" class="mobile-header-exit">+</div>
+    <nav class="mobile-nav">
+        <ul class="mobile-ul">
+            <li><a href="">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="{% url 'products:product_list' %}">Products</a></li>
+            <li><a href="">FAQS</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="{% url 'register_attempt' %}">Register</a></li>
+        </ul>
+    </nav>
+</div>
+<!-- End Mobile Header  -->
+
+<!-- Hamburger Icon & Mobile Logo -->
+<div class="mobile-topbar">
+    <img src="{% static '/images/product_images/PricedOut.svg'%}" alt="logo" class="mobile-logo"/>
+    <div id="open">
+        <i class="fas fa-bars"></i>
+    </div>
+</div>
+<!-- End Hamburger Icon & Mobile Logo -->
+
+<header>
+    <nav class="navBar">
+        <ul class="navLinks">
+            <li><a href="">Home</a></li>
+            <li><a href="">About Us</a></li>
+            <li><a href="{% url 'products:product_list' %}">Products</a></li>
+            <li><a href="">FAQS</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="{% url 'register_attempt' %}">Register</a></li>
+        </ul>
+    </nav>
+</header>
+
+{% for slice in slices %}
+<div class="wrapper">
+    <div class=" rowHeaders {% cycle 'table1' 'table2' %}">
+        <div class="emptySpace"><p></p></div>
+        <h4>Amazon Price</h4>
+        <h4>E-bay Price</h4>
+        <h4>Category</h4>
+    </div>
+
+    {% for product in product_list|slice:slice %}
+    <div class="container">
+        <div class="productImage {% if user in product.likebutton.user.all %}star{% endif %}">
+            <a href="{% url 'products:product_detail' product.pk %}">
+                <img class="thumb" src="{{ product.image }}"></a></div>
+        <h4 class="productName">{{ product.product_name|wordwrap:25|linebreaksbr|truncatechars:40 }}</h4>
+        <a class="amazonPrice" href="{{ product.amazon_url }}">${{ product.amazon_price }}</a>
+        <a class="ebayPrices" href="{{ product.ebay_url}}">${{ product.ebay_price }}</a>
+        <h5 class="condition">{{ product.category|truncatechars:20 }}</h5>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+
+</body>
+</html>
