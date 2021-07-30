@@ -40,11 +40,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Application created by me
     'accounts',
     'products',
     'comment',
+    'contact',
+    'page',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
