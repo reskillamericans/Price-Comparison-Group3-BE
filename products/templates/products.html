@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Products List</h1>
+
+<p>{% for item in all %}
+    {{  item.product_list }}<br/>
+    Price: {{ item.price }}<br/>
+    Description: {{ item.description }}<br/>
+    image: {{ item.image }}<br/>
+    Price: {{ item.price }}<br/>
+    Miscellaneous: {{ item.miscellaneous }}<br/>
+    Created: {{ item.created_at }}<br/>
+    Last Update: {{ item.updated_at }}<br/><br/><br/><br/><br/><br/><br/>
+    {% endfor %} </p>
+<br/><br/><br/>
+</body>
+</html>
