@@ -22,10 +22,8 @@ urlpatterns = [
     # apps
     path('', include('accounts.urls')),
     path('products/', include('products.urls')),
-<<<<<<< HEAD
     path('contact/', include('contact.urls')),
     path('page/', include('page.urls')),
 
-=======
->>>>>>> parent of ee806ab (contact us task)
 ]
+

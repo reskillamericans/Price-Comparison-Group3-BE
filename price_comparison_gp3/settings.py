@@ -44,12 +44,9 @@ INSTALLED_APPS = [
     'accounts',
     'products',
     'comment',
-<<<<<<< HEAD
     'contact',
     'page',
-=======
->>>>>>> parent of ee806ab (contact us task)
-]
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
