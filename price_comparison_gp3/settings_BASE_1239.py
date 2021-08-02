@@ -40,16 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Application created by me
     'accounts',
     'products',
     'comment',
-<<<<<<< HEAD
     'contact',
-    'page',
-=======
->>>>>>> parent of ee806ab (contact us task)
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
