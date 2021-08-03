@@ -1,0 +1,119 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="icon" href="{% static '/images/register_images/PricedOut___1_-removebg-preview 2.png' %}" type="image/svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"/>
+<link rel="stylesheet" href="{% static 'css/Signup.css' %}">
+<title>PricedOut | Signup</title>
+{% endblock css %}
+
+{% block pattern_div %}
+<body>
+<header class="header1">
+    {% include 'products/navlinks.html' %}
+</header>
+{% endblock pattern_div %}
+
+{% block content %}
+<Section class="Main">
+
+    <div class="main-content">
+        <div class="card">
+            <div class="rg"><h1>Register Here</h1></div>
+            <Div class="form">
+                <form action="{% url 'register_attempt' %}" method="post">
+                    {% csrf_token %}
+                    <div class="floating1">
+                        <div class="flt">
+                            <input id="input_fname" class="floating_input" name="first-name" type="text"
+                                   placeholder="First Name">
+                            <label for="input_fname" class="floating_label" data-content="First Name">
+                                <span class="hidden"> First Name </span>
+                            </label>
+                        </div>
+                        <div class="ltn">
+                            <input id="input_lname" class="floating_input" name="last-name" type="text"
+                                   placeholder="Last Name">
+                            <label for="input_lname" class="floating_label" data-content="Last Name">
+                                <span class="hidden"> Last Name </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="floating">
+                        <input id="input_email" class="floating_input" name="email" type="email" placeholder="Email">
+                        <label for="input_email" class="floating_label" data-content="Email">
+                            <span class="hidden"> Email </span>
+                        </label>
+                    </div>
+
+                    <div class="floating" id="float">
+                        <input id="input_number" class="floating_input" name="Number" type="number"
+                               placeholder="Phone Number">
+                        <label for="input_number" class="floating_label" data-content="Phone Number">
+                            <span class="hidden"> Phone Number </span>
+                        </label>
+                    </div>
+
+                    <div class="floating">
+                        <input id="input_password" class="floating_input" name="password" type="password"
+                               placeholder="Password">
+                        <label for="input_password" class="floating_label password" data-content="Password">
+                            <span class="hidden"> Password </span>
+                        </label>
+                        <span><input type="checkbox" onclick="myFunction()">Show Password</span>
+                    </div>
+                    <script>
+                        function myFunction() {
+                          var x = document.getElementById("input_password");
+                          if (x.type === "password") {
+                            x.type = "text";
+                          } else {
+                            x.type = "password";
+                          }
+                        }
+                    </script>
+                    <p> By creating an account you agree to our <a class="terms" href="#">User Agreement</a> and
+                        acknowledge reading our
+                        <span> <a class="terms" href="#">User Privacy Notice</a>.</span>
+                    </p>
+                    <input type="submit" class="create" value="Create Accounts">
+                </form>
+            </Div>
+        </div>
+        <div class="social">
+
+            <div class="lg"><h1>Login</h1></div>
+            <div class="social-buttons">
+                <button class="google">
+                    <img class="ggle" src="https://img.icons8.com/color/48/000000/google-logo.png"/>Login with Google
+                </button>
+                <button class="facebook">
+                    <img class="fb" src="https://img.icons8.com/color/48/000000/facebook.png"/>Login with Facebook
+                </button>
+                <button class="Apple">
+                    <img class="appl" src="https://img.icons8.com/ios-filled/50/000000/mac-os.png"/>Login with Apple
+                </button>
+            </div>
+            <div class="lg-email"><h5>or login with Email</h5></div>
+            <div class="login-form">
+                <form action="{% url 'login_attempt' %}" method="post">
+                    {% csrf_token %}
+                    <input id="email" name="email" class="login-input" type="email" placeholder="Email">
+                    <input id="password" name="password" class="login-input" type="Password" placeholder="Password">
+
+                    <input id="checkbox" type="checkbox">
+                    <label class="remember" for="checkbox"> Remember Me</label>
+                    <br/>
+                    <a class="forget-pass" href="{% url 'reset_attempt' %}"> Forget Password</a>
+
+                    <input class="login-btn" type="submit" value="Login">
+                </form>
+
+            </div>
+        </div>
+    </div>
+</Section>
+{% endblock content %}

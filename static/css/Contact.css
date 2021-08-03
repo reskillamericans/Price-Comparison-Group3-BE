@@ -4,8 +4,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: #f4f0ed; 
-    background-image:url(/images/contact-images/Group\ 70.png), url(/images/contact-images/Group\ 70.png),
-     url(/images/contact-images/Group\ 81.png), url(/images/contact-images/Group\ 82.png) ;
+    background-image:url(../images/contact-images/Group\ 70.png), url(../images/contact-images/Group\ 70.png),
+     url(../images/contact-images/Group\ 81.png), url(../images/contact-images/Group\ 82.png) ;
     background-repeat: no-repeat;
     background-size: 8%, 8%, 9%,9%;
     background-position: 77% 22%, 18.5% 64%, 0% 68% , 100% 68%;
@@ -16,49 +16,51 @@ body{
 .navBar{
     display: flex;
     flex-flow: column;
-    /* height : 210px; */
-    align-items:center;
+    align-items: center;
 }
 .navLinks li a {
-    font-size: 16px;
-    font-weight: bold;
-    color: #2D3047;
-    text-decoration: none;
-    font-family: "Open Sans", sans-serif;
-    position: relative;
-}
+     font-size: 16px;
+     font-weight: bold;
+     color: #2D3047;
+     text-decoration: none;
+     font-family: "Open Sans", sans-serif;
+     position: relative;
+    }
 .navLinks li a:hover{
     color: #FF9218;
 }
 header{
-   
     position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 30px 10%;
-    margin: 0px;
-    max-width: 100%;
-    height: 100px;
-    background: url(images/contact-images/PricedOut___1.svg);
+    margin: auto;
+    width: 95%;
+    height: 167px;
+    background: url(../images/landingpage-images/PricedOut2.svg);
     background-repeat: no-repeat;
-    background-position-x: 10px;
-    background-position-y: -120px;
-}
-header::before{
-    content: "";
-    background-image: linear-gradient(#FF9218, #F9F9F9);
-    background-size: cover;
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    opacity: 11%;
+    background-position-x: -61px;
+    background-position-y: -110px;
 }
 .navLinks li{
-display: inline-block;
-padding: 0px 20px;
+    display: inline-block;
+    padding: 0px 20px;
+}
+a {
+    font-size: 15px;
+    color: inherit;
+}
+a:link {
+    text-decoration: none;
+}
+a:visited {
+    text-decoration: none;
+}
+li a:hover {
+    color: orange;
+}
+a+a {
+    padding: 0em 1em 1em;
 }
 .Main
 {
@@ -93,9 +95,10 @@ padding: 0px 20px;
 }
 
 .card{
-   width: 50% ;
-   padding:  0  0 0 5% ;
+   width: 50%;
+   padding: 0 5%;
    font-size: 16px;
+   margin: 0 auto;
 }
 
 .form h5{
@@ -120,7 +123,7 @@ padding: 0px 20px;
     border: 1px solid grey;
     border-radius: 5px;
     width: 100% ;
-    height: 28px;
+    height: 12px;
     padding-right: 1.3rem;
     transition: all .5s;
  }
@@ -151,7 +154,7 @@ padding: 0px 20px;
     
 }
 
-#input_message{
+#message{
     height: 17vh;
 }
 .send-btn{
@@ -184,9 +187,9 @@ padding: 0px 20px;
 }
 
 .address p{
-    margin-right: 3rem;
+    margin: 0 auto;
     height: 40%;
-    
+
 }
 
 .address span::before { 
@@ -201,6 +204,7 @@ padding: 0px 20px;
 
 .address img{
     width: 80%;
+    margin: 0 auto;
     /* margin: 70px 5px 0px 64px; */
     justify-content: flex-end;
 }
@@ -267,7 +271,7 @@ footer{
     cursor: pointer;
 }
 .sub button:hover{
-    background-color:hsl(32, 96%, 52%) ;
+    color:hsl(32, 96%, 52%) ;
 }
 .copyright{
     display: flex;
@@ -291,8 +295,8 @@ footer{
         /* border: 1px solid red; */
         padding: 0;
         margin: 0;
-        background-image:url(/images/register_images/Group\ 70.png), url(/images/register_images/Group\ 70.png),
-        url(/images/register_images/Group\ 81.png), url(/images/register_images/Group\ 82.png) ;
+        background-image:url(../images/register_images/Group\ 70.png), url(../images/register_images/Group\ 70.png),
+        url(../images/register_images/Group\ 81.png), url(../images/register_images/Group\ 82.png) ;
         background-repeat: no-repeat;
         background-size: 10%, 10%, 14%,14%;
         background-position: 48% 16%, 11% 66%, bottom left, bottom right;

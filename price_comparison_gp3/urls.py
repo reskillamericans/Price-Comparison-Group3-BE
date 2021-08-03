@@ -16,8 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from products.views import LandingPage
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', LandingPage.as_view(), name="landing_page"),
 
     # apps
     path('', include('accounts.urls')),

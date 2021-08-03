@@ -1,45 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/Item.css' %}">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/Item.css' %}">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>PricedOut | Add & Delete Products</title>
+{% endblock css %}
 
-    <title>{{ product.product_name }}</title>
-
-    <style>
-        .productImage img{
-            width: 543px;
-            height: 407px;
-            margin-right: 100px;
-        }
-
-        .productName{
-            margin-left: 30px;
-        }
-
-
-    </style>
-</head>
-<body>
-
-<header>
-    <nav class="navBar">
-        <ul class="navLinks">
-            <li><a href="">Home</a></li>
-            <li><a href="">About Us</a></li>
-            <li><a href="{% url 'products:product_list' %}">Products</a></li>
-            <li><a href="">FAQS</a></li>
-            <li><a href="">Contact Us</a></li>
-            <li><a href="{% url 'register_attempt' %}">Register</a></li>
-        </ul>
-    </nav>
-</header>
-
+{% block content %}
 <div class="productName">
     <h1>Add a Product</h1>
 </div>
@@ -53,7 +23,7 @@
 </div>
 {% endif %}
 <div style="text-align: center;">
-    <form action="{% url 'products:add_products' %}" method="POST">
+    <form action="{% url 'products:add_product' %}" method="POST">
         {% csrf_token %}
         <h3>{{ form.amazon_asin.label }}</h3>
         {{ form.amazon_asin }}
@@ -67,6 +37,22 @@
         <p><input type="submit" value="Add Product"></p>
     </form>
 </div>
+<br/>
+<br/>
+<div class="productName">
+    <h1>Delete Products</h1>
+</div>
+    <table style="margin: 0 auto;">
+    {% for product in product_list %}
+        <tr>
+            <td style="padding: 20px; width: 100px;">ID {{ product.id }}</td>
+            <td style="width: 50px;"><a href="{% url 'products:delete_product' product.id %}">
+                <i class="fa fa-trash"></i></a></td>
+            <td><a href="{% url 'products:product_detail' product.id %}" title="{{ product }}">
+                {{ product|truncatechars:60 }}</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+<footer></footer>
 
-</body>
-</html>
+{% endblock content %}

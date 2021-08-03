@@ -6,7 +6,7 @@ html, body {
 
 body { 
     margin: 0; 
-    padding: 10px; 
+    padding: 0px; 
     background-color: #f4f0ed; 
     position: relative;
 }
@@ -38,7 +38,7 @@ header{
     margin: auto; 
     width: 95%; 
     height: 167px; 
-    background: url(./images/landingpage-images/PricedOut2.svg); 
+    background: url("../images/landingpage-images/PricedOut2.svg");
     background-repeat: no-repeat; 
     background-position-x: -61px; 
     background-position-y: -110px;
@@ -77,7 +77,7 @@ a+a {
 
 
 main { 
-    background-image: url("/images/aboutpage-images/bottomleft.svg"), url("/images/aboutpage-images/topright.svg"); 
+    background-image: url("../images/aboutpage-images/bottomleft.svg"), url("../images/aboutpage-images/topright.svg");
     background-position: left bottom, right top; 
     background-repeat: no-repeat, no-repeat;
 }
@@ -129,7 +129,7 @@ p {
 }
 
 .about { 
-    margin-left: 120px; 
+    margin-left: 75px; 
     margin-top: 30px;
 }
 
@@ -231,12 +231,12 @@ footer {
     }
 
     .duo img {
-        width: 505px;
+        width: 400px;
         height: 280px;
     }
 
-    .how {
-        text-align: end;
+    .how p {
+        text-align: justify;
     }
 
     .how br {
@@ -266,7 +266,7 @@ header {
     background-position-y: -70px; 
     background-size: 50%; 
 } 
-    
+
 .navBar { 
     width: 100%;
     padding: 0; 

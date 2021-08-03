@@ -1,96 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/Item.css' %}">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/Item.css' %}">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<title>PricedOut | {{ product.product_name }}</title>
+{% endblock css %}
 
-    <title>{{ product.product_name }}</title>
+{% block content %}
+<div class="centerGrid">
+    <div class="container">
 
-    <style>
-        .productImage img{
-            width: 543px;
-            height: 407px;
-            margin-right: 100px;
-        }
+        <div class="productImage">
+            <img src="{{ product.image }}">
+            <p>Roll over image to zoom in</p>
+            <br/>
+            <br/>
+            <br/>
+            {% include 'products/like_button.html' %}
+        </div>
 
-        .productName{
-            margin-left: 30px;
-        }
-        
-    </style>
-</head>
-<body>
+        <div class="line1"></div>
 
-        <header>
-            <nav class = "navBar">
-                <ul class = "navLinks">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">About Us</a></li>
-                    <li><a href="{% url 'products:product_list' %}">Products</a></li>
-                    <li><a href="">FAQS</a></li>
-                    <li><a href="">Contact Us</a></li>
-                    <li><a href="{% url 'register_attempt' %}">Register</a></li>
+        <div class="description">
+
+            <div class="productName">
+                <h1>{{ product.product_name }}</h1>
+            </div>
+
+            <p class="store">Sold on Amazon and Ebay</p>
+
+            <div class="features">
+                <h2 class="price">Amazon Price: ${{ product.amazon_price }}</h2>
+                <h2 class="price">E-bay Price: ${{ product.ebay_price }}</h2>
+                <ul>
+                    {{ list_lines|unordered_list }}
                 </ul>
-            </nav>
-        </header>
-
-    <div class="centerGrid">
-        <div class = "container">
-
-            <div class="productImage" >
-                <img src="{{ product.image }}">
-                <p>Roll over image to zoom in</p>
-                <br/>
-                <br/>
-                <br/>
-                {% include 'products/like_button.html' %}
             </div>
 
-            <div class="line1"></div>
+            <div class="line2"></div>
 
-            <div class="description">
+            <form class="amazonButton">
+                <button formaction="{{ product.amazon_url }}">Visit Amazon Site</button>
+            </form>
 
-                <div class="productName">
-                    <h1>{{ product.product_name }}</h1>
-                </div>
-
-                <p class="store">Sold on Amazon and Ebay</p>
-
-                <div class = "features">
-                    <h2 class = "price">Amazon Price: ${{ product.amazon_price }}</h2>
-                    <h2 class = "price">E-bay Price: ${{ product.ebay_price }}</h2>
-                    <p >
-                        {{ product.description }}
-                    </p>
-
-                    <ul>
-                        {{ list_lines|unordered_list }}
-                    </ul>
-                </div>
-
-                <div class="line2"></div>
-
-                <form class="amazonButton">
-                    <button formaction ="{{ product.amazon_url }}">Visit Amazon Site</button>
-                </form>
-
-                <form class="amazonButton">
-                    <button formaction ="{{ product.ebay_url }}">Visit E-bay Site</button>
-                </form>
-
-            </div>
+            <form class="amazonButton">
+                <button formaction="{{ product.ebay_url }}">Visit E-bay Site</button>
+            </form>
         </div>
     </div>
-
-
-    <footer>
-
-    </footer>
-    
-</body>
-</html>
+</div>
+<footer></footer>
+{% endblock content %}

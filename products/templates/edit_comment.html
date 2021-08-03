@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-<body>
-
-<h2>Edit Comment</h2>
-
-<form action="/edit_comment.html">
-  <input type="text" id="comment" name="User" value=""><br>
-  <input type="Submit" value="Edit">
+<h1>Edit Comment</h1>
+<form method="POST" action="{% url 'products:edit_comment' comment.id %}">
+  {% csrf_token %}
+  {{ form.as_p  }}
+  <br/>
+  <input type="submit" value="Submit Update" name="Update"><br/><br/><br/>
+  <input type="submit" value="Cancel" name="Cancel">
 </form>
-
-<p>If you click the "Edit" button, the comment will be sent to a page called "/edit_comment.html".</p>
-
-</body>
-</html>

@@ -1,10 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/Item.css' %}">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Comments for {{ product|truncatechars:20 }}</title>
+{% endblock css %}
 
-</body>
-</html>
+{% block content %}
+<div style="margin: 0 auto; width: 90%;">
+    <h1>{{ product.product_name }}</h1>
+    <strong>Amazon Price:</strong> ${{ product.amazon_price }}
+    <br/><br/>
+    <strong>E-Bay Price:</strong> ${{ product.ebay_price }}
+    <br/><br/>
+    <strong>Created:</strong> {{ product.created_at }}
+    <br/><br/>
+    <strong>Last Update:</strong> {{ product.updated_at }}
+    <br/><br/>
+    <hr>
+    <br/>
+    <strong>Add Comments</strong>
+    {% if user.is_authenticated %}
+    <form action="{% url 'products:add_comment' product.id %}" method="POST" id="submitform">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <p><input type="submit" value="Submit Comment"></p>
+    </form>
+    {% else %}
+    <div class="form_button">
+        <input type="submit" value="Login!" onclick="window.location.href='{% url 'signup' %}'">
+    </div>
+    {% endif %}
+    <br/>
+    <hr>
+    <br/>
+    <strong> View All Comments</strong>
+    <br/>
+    <br/>
+    <hr>
+
+    {% for comment in product.comments.all %}
+    <div class="comments">
+        <div class="date">
+            <strong>{{ comment.user }}</strong> | {{ comment.created }}
+            {% if comment.updated %} | Last Updated: {{ comment.last_update }} {% endif %}
+        </div>
+        <a href="{% url 'products:edit_comment' comment.id %}">Edit</a>
+        &nbsp;|&nbsp;
+        <a href="{% url 'products:delete_comment' comment.id %}">Delete</a>
+        <br/>
+        <br/>
+        {{ comment.content }}<br><br/>
+        <hr>
+        {% empty %}
+        {% endfor %}
+        <hr>
+        <br/>
+        <a href="{% url 'products:product_detail' product.id %}">Back to Product Detail</a>
+        <br/><br/><br/>
+        <a href="{% url 'products:product_modal' product.id %}">Back to Product Modal</a>
+        <br/><br/><br/>
+        <a href="{% url 'products:product_list' %}">Back to Product List</a>
+        <br/><br/><br/>
+    </div>
+</div>
+<footer></footer>
+
+{% endblock content %}

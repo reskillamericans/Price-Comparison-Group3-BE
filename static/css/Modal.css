@@ -11,23 +11,35 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif; 
-    height: 100%;
+    font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
     overflow-y: scroll;
-    
+    height: 100vh;
+}
+
+.container:after {
+    content: "";
+    position: fixed;
+    background: #2D3047;
+    height: 30px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
 }
 
 .container {
+    /* height: 100%; */
     height: 100%;
+    position: relative;
 }
 
 header {
-    display: flex;
     position: relative;
+    display: flex;
+    justify-content: flex-end;
     align-items: center;
-    height: 11em;
-    
+    margin: auto;
+    height: 167px;
 }
 
 header::before {
@@ -42,35 +54,50 @@ header::before {
     opacity: 0.15;
 }
 
-header li {
-    float: left;
+header ul {
+    z-index: 2;
+    position: relative;
 }
 
+header li {
+    float: left;
+    padding-right: 45px;
+}
 
 header a {
-    padding: 20px;
+
     font-size: 18px;
     color: #181925;
     font-family: 'Average Sans', sans-serif;
 }
 
 .navbar {
-    position: relative;
-    left: 12em;   
+    display: flex;
+    align-content: center;
+    flex-flow: column;
  }
+
+ /* .navbar li {
+    padding: 0px 20px;
+    display: inline-block;
+ } */
 
  .logo {
     width: -moz-fit-content;
     position: relative;
-    top: 3.5em;
-    left: 4em;
+    top: 35%;
+    right: 17%;
 }
 .logo img {
     width: 435px;
     max-width: 100%;
     height: auto;
 }
- 
+
+.navLinks li a:hover {
+    color: #ff9218;
+}
+
 .home:hover {
     color: #ff9218;
 }
@@ -117,15 +144,22 @@ h1 {
     transform: translate(-50%, -50%)
 }
 
-.phones {
+.product {
    border-right:  1px solid #C4C4C4;
+}
+
+figure img{
+    object-fit: contain;
+    width: 300px;
+    height: 300px;
 }
 
 figcaption {
     text-align: center;
     font-size: 14px;
     font-weight: 700;
-
+    width: 320px;
+    color: black;
 }
 
 .info {
@@ -135,7 +169,6 @@ figcaption {
     padding-top: 55px;
     padding-left: 20px;
     letter-spacing: .5px;
-   
 }
 
 .amazon {
@@ -172,8 +205,7 @@ p {
     position: absolute;
     top: 124%;
     left: 50%;
-    transform: translate(-50%, -50%)
-
+    transform: translate(-50%, -50%);
 }
 
 .footer-top {
@@ -184,7 +216,6 @@ p {
     background: rgba(212, 212, 212, 0.555);
     position: absolute;
     top: 0;
-    
 }
 
 .capsule {
@@ -208,7 +239,7 @@ p {
 
 }
 
-.capsule a {
+#likes_count {
     position: relative;
     left: 66px;
     top: -29px;
@@ -218,6 +249,14 @@ p {
     position: relative;
     left: 30px;
     cursor: pointer;
+}
+
+.like_icon {
+    cursor: pointer;
+    position: relative;
+    font-size:32px;
+    left: 25px;
+    top: 2px;
 }
 
 .social-icons {
@@ -234,7 +273,21 @@ p {
     
 }
 
+input[type=image] {
+    padding-right: 20px;
+    height: 45px;
+    cursor: pointer;
+}
+
+form {
+    margin-top: -26%;
+}
+
 textarea {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
     border-top: none;
     border-left: none;
     box-shadow: 0px 4px 4px 0px #00000040;
@@ -242,7 +295,7 @@ textarea {
     resize: none;
     text-indent: 6px;
     overflow: hidden;
-    
+
 }
 
 textarea:focus, input:focus{
@@ -256,12 +309,268 @@ textarea:focus, input:focus{
     line-height: calc((var(--textareaHeight)) - var(--placeholderFontSize));
 }
 
-.blue-border {
+
+/* .blue-border {
     background: #2D3047;
     width: 100vw;
     height: 60px;
-    position: absolute;
+     position: absolute;
     top: 1020px;
+    width:100%;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, -50%);
+} */
+
+
+ /* ----------- iPad  ----------- */
+
+    /* Portrait  */
+    @media only screen
+    and (min-device-width: 768px)
+    and (orientation: portrait)
+    and (-webkit-min-device-pixel-ratio: 1) {
+
+    header {
+        display: flex;
+        flex-direction: column;
+        width: 768px;
+    }
+
+    header a {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    header ul {
+        display: flex;
+        align-items: center;
+        justify-content: center !important;
+        padding: 0;
+        margin: 0;
+        /* margin-right: 35%; */
+    }
+
+    header li {
+        float:left;
+        padding: 0;
+    }
+
+    .navbar {
+        position: absolute;
+        /* top: 10em;
+        left: -15px; */
+        width: 100%;
+    }
+    .logo {
+        width: -moz-fit-content;
+        position: relative;
+        top: 35%;
+        right: 0;
+    }
+    .logo img {
+        width: 300px;
+        max-width: 100%;
+        height: auto;
+    }
+
+    h1 {
+        font-size: 20px;
+        color: #797474;
+        margin: 0;
+        position: absolute;
+        top: 27%;
+        left: 50%;
+        transform: translate(-50%, -50%)
+    }
+
+    .boxes {
+        position: absolute;
+        right: 20px;
+        top: 235px;
+        width: 75px;
+        opacity: .50;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        width: 450px;
+        margin: 0;
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    figure {
+        text-align: center;
+        position: relative;
+        top: -29px;
+    }
+    figure img {
+        width: 330px;
+    }
+
+    .product {
+        border-right:  none;
+     }
+
+     figcaption {
+         text-align: center;
+         font-size: 11px;
+         font-weight: 700;
+
+     }
+
+    .info {
+        width: 100px;
+        color: #ff9218;
+        letter-spacing: .5px;
+        position: absolute;
+        left: 0;
+        top: 52%;
+        box-sizing: border-box;
+
+    }
+
+    h2 {
+        font-size: 15px;
+    }
+    .amazon {
+        width: 150px;
+        text-align: center;
+        border-right:  1px solid #C4C4C4;
+        position: relative;
+        left: 20%;
+        top: 0;
+    }
+    .amazon a {
+        color: black;
+    }
+
+    .ebay {
+        width: 180px;
+        text-align: center;
+        /* padding-left: 36px; */
+        position: absolute;
+        right: 35px;
+        top: 55.2%;
+    }
+    .ebay a{
+        color: black;
+    }
+
+
+    p {
+        font-size: 11px;
+        padding: 12px;
+    }
+
+    .footer {
+        display: flex;
+        align-items: center;
+        width: 450px;
+        height: 400px;
+        margin: 0;
+        position: absolute;
+        top:110%;
+        left: 50%;
+
+
+    }
+
+    .footer-top {
+        display: flex;
+        align-items: center;
+        width: 450px;
+        min-height: 78px;
+        background: rgba(212, 212, 212, 0.555);
+        position: absolute;
+        top: 0;
+
+    }
+
+    .capsule {
+        display: flex;
+        flex-direction: row;
+        border-radius: 500px;
+        width: 119px;
+        height: 40px;
+        background: #F9F9F9;
+        margin-left: 30px;
+    }
+
+    .capsule p {
+        position: relative;
+        left: 15px;
+
+        color: #797474;
+        font-weight: bold;
+        font-size: 15px;
+        width: min-content;
+
+    }
+
+    .capsule a {
+        position: relative;
+        left: 41px;
+        top: -22px;
+    }
+    .like-btn {
+        width: 15px;
+        position: relative;
+        top: 2px;
+        left: 20px;
+        cursor: pointer;
+    }
+
+    .social-icons {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        left: 55%;
+
+    }
+    .social-icons img {
+        padding-right: 10px;
+        width: 30px;
+        height: auto;
+        cursor: pointer;
+
+    }
+
+    form {
+        margin-top: -0%;
+    }
+
+    textarea {
+        border-top: none;
+        border-left: none;
+        box-shadow: 0px 4px 4px 0px #00000040;
+        position: relative;
+        resize: none;
+        text-indent: 6px;
+        width: 450px;
+}
+
+    textarea:focus, input:focus{
+        outline: 0;
+    }
+
+    ::placeholder {
+        color: #797474;
+        text-align: center;
+        font-size: var(--placeholderFontSize);
+        line-height: calc((var(--textareaHeight)) - var(--placeholderFontSize));
+    }
+
+
+    .blue-border {
+            display: none;
+    }
+
 }
 
 
@@ -274,6 +583,7 @@ textarea:focus, input:focus{
     header {
         display: flex;
         flex-direction: column;
+        width: auto;
     }
 
     header a {
@@ -281,16 +591,27 @@ textarea:focus, input:focus{
         font-size: 11px;
     }
 
+    header ul {
+        display: flex;
+        align-items: center;
+        justify-content: center !important;
+        padding: 0;
+        margin: 0;
+    }
+
+    header li {
+        float:left;
+        padding: 0;
+    }
+
     .navbar {
         position: absolute;
-        top: 10em;
-        left: -15px;
+        /* top: 10em;
+        left: -15px; */
         width: 100%;
     }
     .logo {
-        position: unset;
-        width: -moz-fit-content;
-        width: fit-content;
+        right: 0;
     }
     .logo img {
         width: 300px;
@@ -333,18 +654,20 @@ textarea:focus, input:focus{
         top: -29px;
     }
     figure img {
-        width: 330px;
+        width: 200px;
+        height: 200px;
     }
 
-    .phones {
+    .product {
         border-right:  none;
      }
-     
+
      figcaption {
          text-align: center;
          font-size: 11px;
          font-weight: 700;
-     
+         margin: 0 auto;
+         width: 300px;
      }
 
     .info {
@@ -355,9 +678,9 @@ textarea:focus, input:focus{
         left: 0;
         top: 52%;
         box-sizing: border-box;
-       
+
     }
-    
+
     h2 {
         font-size: 15px;
     }
@@ -367,25 +690,26 @@ textarea:focus, input:focus{
         border-right:  1px solid #C4C4C4;
         position: relative;
         left: 20%;
-        top: 0;
+        top: -6px;
+        padding: 0;
     }
     .amazon a {
         color: black;
     }
-    
+
     .ebay {
         width: 180px;
         text-align: center;
         padding-left: 36px;
         position: absolute;
         right: 0;
-        top: 55.2%;
+        top: 208px;
     }
     .ebay a{
         color: black;
     }
-    
-    
+
+
     p {
         font-size: 11px;
         padding: 12px;
@@ -400,8 +724,8 @@ textarea:focus, input:focus{
         position: absolute;
         top:146%;
         left: 50%;
-        
-        
+
+
     }
 
     .footer-top {
@@ -412,9 +736,9 @@ textarea:focus, input:focus{
         background: rgba(212, 212, 212, 0.555);
         position: absolute;
         top: 0;
-        
+
     }
-    
+
     .capsule {
         display: flex;
         flex-direction: row;
@@ -424,23 +748,36 @@ textarea:focus, input:focus{
         background: #F9F9F9;
         margin-left: 30px;
     }
-    
+
     .capsule p {
         position: relative;
         left: 15px;
-       
+
         color: #797474;
         font-weight: bold;
         font-size: 15px;
         width: min-content;
-    
+
     }
-    
-    .capsule a {
+
+/*    .capsule a {
+        position: relative;
+        left: 41px;
+        top: -22px;
+    }*/
+
+    #likes_count {
         position: relative;
         left: 41px;
         top: -22px;
     }
+
+    .like_icon {
+        font-size: 24px;
+        left: 14px;
+        top: 5px;
+    }
+
     .like-btn {
         width: 15px;
         position: relative;
@@ -448,22 +785,26 @@ textarea:focus, input:focus{
         left: 20px;
         cursor: pointer;
     }
-    
+
     .social-icons {
         display: flex;
         align-items: center;
         position: absolute;
         left: 55%;
-        
+
     }
     .social-icons img {
         padding-right: 10px;
         width: 30px;
         height: auto;
         cursor: pointer;
-        
+
     }
-    
+
+    form {
+        margin-top: 0%;
+    }
+
     textarea {
         border-top: none;
         border-left: none;
@@ -472,24 +813,24 @@ textarea:focus, input:focus{
         resize: none;
         text-indent: 6px;
         width: 300px;
-        
-        
 
-        
+
+
+
     }
-    
+
     textarea:focus, input:focus{
         outline: 0;
     }
-    
+
     ::placeholder {
         color: #797474;
         text-align: center;
         font-size: var(--placeholderFontSize);
         line-height: calc((var(--textareaHeight)) - var(--placeholderFontSize));
     }
-    
-    
+
+
     .blue-border {
             display: none;
     }
@@ -503,11 +844,9 @@ textarea:focus, input:focus{
             margin: 0;
             position: absolute;
             top:155%;
-            left: 50%;  
-            
+            left: 50%;
+
         }
     }
-    
+
 }
-
-
