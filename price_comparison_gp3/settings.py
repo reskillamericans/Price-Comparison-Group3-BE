@@ -33,7 +33,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure--1%x(8n#=be+p3h5x326z-gu8r$59lxcy#%oz3050+6i9_f@2l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -153,7 +153,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 # EMAIL_USE_TLS = env('EMAIL_USE_TLS')
 # EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 # EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_SSL = env('EMAIL_USE_SSL')
+# EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 

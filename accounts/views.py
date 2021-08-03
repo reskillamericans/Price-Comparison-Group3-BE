@@ -17,7 +17,7 @@ env = environ.Env(
 environ.Env.read_env()
 
 # Send email or instant verification
-send_email = env('SEND_EMAIL')
+send_email = env.bool('SEND_EMAIL')
 
 
 @login_required
