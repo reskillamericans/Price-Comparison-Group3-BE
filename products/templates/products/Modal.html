@@ -23,22 +23,22 @@
         </div>
         {% include 'products/navlinks.html' %}
     </header>
-{% endblock pattern_div %}
+    {% endblock pattern_div %}
 
-{% block content %}
+    {% block content %}
     <h1>Product Summary</h1>
     <img src="{% static '/images/modal-images/boxes.png' %}" alt="3-decorative-golden-squares-randomly-overlapping"
          class="boxes">
 
     <div class="main">
         <div class="product">
-            <a href="{% url 'products:product_detail' product.pk %}"  title="{{ product }}">
-            <figure>
-                <img src="{{ product.image }}" alt="{{ product.image|truncatechars:20 }}">
-                <figcaption>
+            <a href="{% url 'products:product_detail' product.pk %}" title="{{ product }}">
+                <figure>
+                    <img src="{{ product.image }}" alt="{{ product.image|truncatechars:20 }}">
+                    <figcaption>
                         {{ product }}
-                </figcaption>
-            </figure>
+                    </figcaption>
+                </figure>
             </a>
         </div>
 
@@ -81,13 +81,14 @@
                 <a href="https://www.instagram.com/"><img src="{% static '/images/modal-images/ig-icon.svg' %}"></a>
                 <!--<a href="#"><img src="{% static '/images/modal-images/link-icon.svg' %}" class="link"></a>-->
                 <input type="image" src="{% static '/images/modal-images/submit.svg' %}" class="link"
-                alt="Submit Comment" title="Submit Comment" form="submitform">
+                       alt="Submit Comment" title="Submit Comment" form="submitform">
                 <!--<p><input type="submit" value="Submit" form="submitform"></p>-->
             </div>
         </div>
         <form action="{% url 'products:add_comment' product.id %}" method="POST" id="submitform">
             {% csrf_token %}
-            <textarea rows="15" cols="120" id="content" name="content" placeholder="Leave a comment!" required></textarea>
+            <textarea rows="15" cols="120" id="content" name="content" placeholder="Leave a comment!"
+                      required></textarea>
         </form>
     </div>
     <div class="blue-border"></div>
