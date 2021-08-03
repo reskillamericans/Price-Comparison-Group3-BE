@@ -1,7 +1,6 @@
 # Framework for Price Comparison tool
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.contrib.auth.models import User
 
 User = get_user_model()
 
@@ -37,3 +36,20 @@ class LikeButton(models.Model):
     @property
     def total_likes(self):
         return self.user.count()
+
+
+class Comment(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(User, null=True, on_delete=models.PROTECT)
+    content = models.TextField(max_length=3000)
+    approved = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.BooleanField(default=False)
+    last_update = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name_plural = "Comments"
+        ordering = ['-created']
+
+    def __str__(self):
+        return 'Comment on {} by {}'.format(self.product, self.user)

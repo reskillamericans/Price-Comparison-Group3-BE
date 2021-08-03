@@ -1,0 +1,96 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link href="{% static 'css/modal.css' %}" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Average+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" href="{% static 'images/modal-images/brandlogo.png' %}" type="image/svg">
+<title>PricedOut | {{ product|truncatechars:20 }} Summary</title>
+{% endblock css %}
+
+{% block pattern_div %}
+<body>
+<div class="container">
+
+    <header>
+        <div class="logo">
+            <img src="{% static '/images/modal-images/brandlogo.png' %}" alt="priced-out-brand-logo">
+        </div>
+        {% include 'products/navlinks.html' %}
+    </header>
+    {% endblock pattern_div %}
+
+    {% block content %}
+    <h1>Product Summary</h1>
+    <img src="{% static '/images/modal-images/boxes.png' %}" alt="3-decorative-golden-squares-randomly-overlapping"
+         class="boxes">
+
+    <div class="main">
+        <div class="product">
+            <a href="{% url 'products:product_detail' product.pk %}" title="{{ product }}">
+                <figure>
+                    <img src="{{ product.image }}" alt="{{ product.image|truncatechars:20 }}">
+                    <figcaption>
+                        {{ product }}
+                    </figcaption>
+                </figure>
+            </a>
+        </div>
+
+        <div class="info">
+            <p>Product</p>
+            <p>Price</p>
+            <p>Category</p>
+        </div>
+        <div class="amazon">
+            <h2>Amazon</h2>
+            <p title="{{ product }}">{{ product|truncatechars:16 }}</p>
+            <p><a href="{{ product.amazon_url }}">{{ product.amazon_price }}</a></p>
+            <p>{{ product.category }}</p>
+        </div>
+        <div class="ebay">
+            <h2>Ebay</h2>
+            <p title="{{ product }}">{{ product|truncatechars:16 }}</p>
+            <p><a href="{{ product.ebay_url }}">{{ product.ebay_price }}</a></p>
+            <p>{{ product.category }}</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-top">
+            <div class="capsule">
+                {% if user.is_authenticated %}
+                <a id="{{ likes.id }}" class="like_icon"
+                   style="color: {% if user_like %} gold {% else %} lightgrey {% endif %};">
+                    <i class="fa fa-thumbs-o-up fa-flip-horizontal"></i>
+                </a>
+                {% endif %}
+                <p>Likes <a id="likes_count">{{ likes.total_likes }}</a></p>
+            </div>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            {% include 'products/like_button_script.html' %}
+
+            <div class="social-icons">
+                <a href="https://www.facebook.com/"><img src="{% static '/images/modal-images/fb-icon.svg' %}"></a>
+                <a href="https://twitter.com/"><img src="{% static '/images/modal-images/twtr-icon.svg' %}"></a>
+                <a href="https://www.instagram.com/"><img src="{% static '/images/modal-images/ig-icon.svg' %}"></a>
+                <!--<a href="#"><img src="{% static '/images/modal-images/link-icon.svg' %}" class="link"></a>-->
+                <input type="image" src="{% static '/images/modal-images/submit.svg' %}" class="link"
+                       alt="Submit Comment" title="Submit Comment" form="submitform">
+                <!--<p><input type="submit" value="Submit" form="submitform"></p>-->
+            </div>
+        </div>
+        <form action="{% url 'products:add_comment' product.id %}" method="POST" id="submitform">
+            {% csrf_token %}
+            <textarea rows="15" cols="120" id="content" name="content" placeholder="Leave a comment!"
+                      required></textarea>
+        </form>
+    </div>
+    <div class="blue-border"></div>
+</div>
+{% endblock content %}

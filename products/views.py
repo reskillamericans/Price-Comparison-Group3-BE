@@ -1,20 +1,31 @@
 import json
+
 import requests
 from django.contrib import messages
-from django.contrib.staticfiles.storage import staticfiles_storage
 from django.contrib.auth.decorators import login_required
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, redirect
+from django.utils import timezone
 from django.views import generic
+
 from test_files import ebay_products, amazon_products
-from .forms import AddProductForm
-from .models import Product, LikeButton
+from .forms import AddProductForm, CommentForm
+from .models import Product, LikeButton, Comment
 
 # Debug product fetching
-debug_gp = True
+debug_gp = False
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
+
+
+class LandingPage(generic.ListView):
+    template_name = 'products/index.html'
+    context_object_name = 'product_list'
+
+    def get_queryset(self):
+        return Product.objects.order_by('product_name')[:10]
 
 
 @login_required
@@ -55,7 +66,7 @@ class ProductDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         pk = self.kwargs['pk']
-        context['likes_list'] = LikeButton.objects.filter(product_id=pk)
+        context['likes'] = LikeButton.objects.filter(product_id=pk).first()
         user = self.request.user
         if user.is_authenticated:
             context['user_like'] = LikeButton.objects.filter(user=self.request.user, product_id=pk)
@@ -64,9 +75,27 @@ class ProductDetailView(generic.DetailView):
 
         # Split features into list of lines
         product = self.object
-        features = product.features.splitlines()
+        features = product.description.splitlines()
         context['list_lines'] = features
 
+        return context
+
+
+# Show product modal
+class ProductModalView(generic.DetailView):
+    model = Product
+    template_name = 'products/Modal.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductModalView, self).get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        context['likes'] = LikeButton.objects.filter(product_id=pk).first()
+        context['comment_list'] = Comment.objects.filter(product=pk)
+        user = self.request.user
+        if user.is_authenticated:
+            context['user_like'] = LikeButton.objects.filter(user=self.request.user, product_id=pk)
+        else:
+            context['user_like'] = False
         return context
 
 
@@ -118,17 +147,18 @@ def add_product_view(request):
             messages.error(request, f"Error: {created}")
 
     # Render page with any bound data and error messages
-    context = {'form': AddProductForm()}
+    context = {'form': AddProductForm(), 'product_list': Product.objects.order_by('id')}
     return render(request, 'products/add_product.html', context)
 
 
 def delete_product(request, product_id):
-    redirect_url = request.META["HTTP_REFERER"]
     # Retrieve product
     product = get_object_or_404(Product, pk=product_id)
+    product_name = product.product_name
     # Delete product
     product.delete()
-    return redirect(redirect_url)
+    messages.success(request, f"\"{product_name}\" has been deleted")
+    return redirect('products:add_product')
 
 
 # Get amazon product from asin
@@ -153,6 +183,8 @@ def get_amazon_product(amazon_asin):
         'image_urls' : response['images'],
         'url'        : response['full_link']
         }
+    while None in amazon_context['features']:
+        amazon_context['features'].remove(None)
     return amazon_context
 
 
@@ -216,3 +248,59 @@ def get_create_product(amazon_product, ebay_product):
         return False, e
     except LookupError as e:
         return False, e
+
+
+# Add comment to product
+@login_required(login_url="signup")
+def add_comment(request, product_id):
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == "POST":
+        user = request.user
+        content = request.POST.get('content')
+        comment = Comment(user=user, content=content, product=product, approved=True)
+        comment.save()
+    return redirect('products:product_comments', pk=product.pk)
+
+
+# Delete comment
+@login_required(login_url="signup")
+def delete_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    product = get_object_or_404(Product, pk=comment.product.pk)
+    comment.delete()
+    return redirect('products:product_comments', pk=product.pk)
+
+
+# Edit Comment
+@login_required(login_url="signup")
+def edit_comment(request, comment_id):
+    comment = get_object_or_404(Comment, pk=comment_id)
+    form = CommentForm(instance=comment)
+
+    if request.method == 'POST' and 'Update' in request.POST:
+        form = CommentForm(request.POST, instance=comment)
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.updated = True
+            comment.last_update = timezone.now()
+            comment.save()
+            return redirect('products:product_comments', pk=comment.product.pk)
+    elif request.method == 'POST' and 'Cancel' in request.POST:
+        return redirect('products:product_comments', pk=comment.product.pk)
+
+    context = {'form': form, 'comment': comment}
+    return render(request, 'edit_comment.html', context)
+
+
+# Show product comments
+class ProductComments(generic.DetailView):
+    model = Product
+    template_name = 'comment_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProductComments, self).get_context_data(**kwargs)
+        pk = self.kwargs['pk']
+        context['form'] = CommentForm
+        context['comment_list'] = Comment.objects.filter(product_id=pk)
+        return context

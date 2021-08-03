@@ -1,0 +1,92 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="icon" href="{% static 'images/landingpage-images/Pricedout2.svg' %}" type="image/svg">
+<title>PricedOut</title>
+{% endblock css %}
+
+{% block pattern_div %}
+<body>
+    <header>
+        {% include 'products/navlinks.html' %}
+    </header>
+{% endblock pattern_div %}
+
+{% block content %}
+<main>
+    <div class="stripes">
+        <img src="{% static '/images/landingpage-images/long.svg' %}" alt="stripes">
+        <img src="{% static '/images/landingpage-images/medium.svg' %}" alt="stripes">
+        <img src="{% static '/images/landingpage-images/short.svg' %}" alt="stripes">
+    </div>
+
+    <div class="text">
+        <h1>Compare the
+            <span class="bold">best</span>
+            products
+            <br>
+            at prices you
+            <span class="bold">love.</span>
+        </h1>
+        <br>
+        <p>A price comparison website for top brands <br>
+            across Amazon and E-Bay.</p>
+    </div>
+
+    <div class="button">
+        <a href="{% url 'products:product_list' %}">
+            <button class="start">Get Started</button>
+        </a>
+    </div>
+
+    <div class="items">
+        {% with list=product_list|slice:":5" %}
+        <div class="container">
+            {% for product in list %}
+            <div class="box">
+                <a href="{% url 'products:product_detail' product.id %}">
+                    <figure class="caption">
+                        <img src="{{ product.image }}" title="{{ product }}"
+                             alt="{{ product.product_name|truncatechars_html:18 }}">
+                        <figcaption class="caption" title="{{ product }}">
+                            {{ product.product_name|truncatechars_html:16 }}
+                        </figcaption>
+                    </figure>
+                </a>
+            </div>
+            {% endfor %}
+            ​
+        </div>
+        {% endwith %}
+        <br/><br/>
+        {% with list=product_list|slice:"5:10" %}
+        <div class="container">
+            {% for product in list %}
+            <div class="box">
+                <a href="{% url 'products:product_detail' product.id %}">
+                    <figure class="caption">
+                        <img src="{{ product.image }}" title="{{ product }}"
+                             alt="{{ products.product_name|truncatechars_html:18 }}">
+                        <figcaption class="caption" title="{{ product }}">
+                            {{ product.product_name|truncatechars_html:16 }}
+                        </figcaption>
+                    </figure>
+                </a>
+            </div>
+            {% endfor %}
+            ​
+        </div>
+        {% endwith %}
+    </div>
+</main>
+<footer>
+    <a href="#">PRICEDOUT@2021 </a>
+    <a href="#">Terms of Service </a>
+    <a href="#">Privacy Policy</a>
+    <a href="#">Careers</a>
+    <a href="#">Ads Info</a>
+    <a href="#">Cookie Policy</a>
+</footer>
+​
+{% endblock content %}

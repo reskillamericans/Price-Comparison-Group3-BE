@@ -5,11 +5,14 @@
 
 body{
     margin: 0;
-    background-color: #F9F9F9;
+    padding: 0px;
+    background-color: #f4f0ed;
+    position: relative;
+
     font-family: "Open Sans", sans-serif;
 }
 
-.navBar{ 
+.navBar{
     display: flex;
     flex-flow: column;
     align-items:center;
@@ -22,7 +25,7 @@ body{
     text-decoration: none;
     font-family: "Open Sans", sans-serif;
     position: relative;
-} 
+}
 
 .navLinks li a:hover{
     color: #FF9218;
@@ -30,19 +33,9 @@ body{
 
 header{
     position: relative;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 30px 10%;
-    margin: 0px;
-    width: 1420px; 
-    height: 200px;   
-
-    background: url(../images/product_images/PricedOut.svg);
-    background-repeat: no-repeat;
-    background-position-x: 10px;
-    background-position-y: -100px;
-} 
+    width: 100%;
+    padding-bottom: 20px;
+}
 
 header::before{
     content: "";
@@ -61,6 +54,20 @@ display: inline-block;
 padding: 0px 20px;
 }
 
+.gradient{
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: auto;
+    width: 95%;
+    height: 167px;
+    background: url(../images/product_images/PricedOut.svg);
+    background-repeat: no-repeat;
+    background-position-x: -61px;
+    background-position-y: -110px;
+}
+
 
 .centerGrid{
     display: grid;
@@ -70,33 +77,35 @@ padding: 0px 20px;
 }
 
 .container {
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    grid-template-rows: 1fr 1fr 1fr 1fr; 
-    gap: 0px 0px; 
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 0px 0px;
 
-    grid-template-areas: 
+    grid-template-areas:
       "productImage description"
       "productImage description"
       "productImage description"
       "productImage description"
-      "productImage description"; 
+      "productImage description";
 
       align-items: center;
       justify-items: center;
 }
 
-.productImage { 
+.productImage {
     grid-area: productImage;
 }
 
 .productImage img{
+    width: 450px;
+    height: 450px;
     transform: scale(1);
     transition: 0.3s ease-in-out;
     object-fit: contain;
 }
 
-.productImage:hover img{
+.productImage img:hover {
     transform: scale(1.25);
 }
 
@@ -110,9 +119,17 @@ padding: 0px 20px;
     color: #181925;
 }
 
+.like_section {
+    text-align: center;
+}
 
-.description { 
-    grid-area: description; 
+.like_icon {
+    font-size: 90px;
+    cursor: pointer;
+}
+
+.description {
+    grid-area: description;
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -120,8 +137,8 @@ padding: 0px 20px;
     color: #797474;
     }
 
-.productName h1{ 
-    grid-area: productName; 
+.productName h1{
+    grid-area: productName;
     font-style: normal;
     font-weight: 600;
     font-size: 64px;
@@ -135,13 +152,13 @@ padding: 0px 20px;
     font-weight: 600;
     font-size: 20px;
     line-height: 27px;
-    text-align: center;   
+    text-align: center;
     text-decoration-line: underline;
     color: #000000;
 }
 
-.features { 
-    grid-area: features; 
+.features {
+    grid-area: features;
 
     font-style: normal;
     font-weight: bold;
@@ -157,7 +174,7 @@ padding: 0px 20px;
     font-size: 37px;
     line-height: 50px;
     text-align: center;
-    color: #797474;   
+    color: #797474;
 }
 
 .features p{
@@ -184,11 +201,11 @@ padding: 0px 20px;
     font-weight: bold;
 }
 
-.amazonButton { 
-    grid-area: amazonButton; 
+.amazonButton {
+    grid-area: amazonButton;
 }
 
-.amazonButton button{ 
+.amazonButton button{
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
@@ -221,7 +238,7 @@ padding: 0px 20px;
     border: 1px solid #C4C4C4;
     transform: rotate(90deg);
 }
-  
+
 .line2{
     width: 445px;
 
@@ -235,7 +252,7 @@ padding: 0px 20px;
 footer{
     height: 400px;
 
-    background-image: 
+    background-image:
                     url(../images/single_product_images/Ellipse.png),
                     url(../images/single_product_images/Ellipse.png),
                     url(../images/single_product_images/Rectangle\ 11.png),

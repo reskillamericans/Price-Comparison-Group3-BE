@@ -78,7 +78,8 @@ amazon_responses = [
          'HIGHER RESOLUTION, 100X ZOOM: Get amazing clarity with a dual lens combo of 3X and 10X optical zoom and revolutionary 100X Space Zoom.',
          'ALL DAY INTELLIGENT BATTERY: Intuitively manages your cellphone�s usage, so you can go all day without charging�.',
          'POWER OF 5G: Experience next-generation connectivity for everything you love to do: more sharing, more gaming, more experiences.',
-         '�Battery power consumption depends on usage patterns and results may vary.', None], 'dimensions'    : '',
+         '�Battery power consumption depends on usage patterns and results may vary.', None],
+     'dimensions'    : '',
      'weight'                                                                                                 : ''
      },
 
@@ -116,7 +117,8 @@ amazon_responses = [
          '1.6 GHz Intel Core i5 processor for optimal performance',
          '11.6-Inch Widescreen display with 1366 x 768 native resolution', '4GB LPDDR3',
          '128GB SSD; Intel HD Graphics 6000 graphics processor; Two 3.0 USB ports; Standard 802.11a, b, g, n airport and Bluetooth 4.0 keep you connected; 38 W h Li-Poly Battery with 8 hours of battery life; Thunderbolt port',
-         None], 'dimensions'                                                                                   : '',
+         None],
+     'dimensions'                                                                                   : '',
      'weight'                                                                                                  : ''
      },
 
@@ -164,7 +166,8 @@ amazon_responses = [
          'One touch to listen to Spotify: Instantly listen to your last Spotify session or discover new music by tapping and holding the right earcup. Currently only available when using iOS devices with your headphones',
          'Pair with Bose soundbar: Use Bose SimpleSync technology to pair these wireless bluetooth headphones to the Bose smart soundbar 300, 500 or 700 for a personal listening experience.',
          'Alexa to Alexa calling: Use these wireless noise cancelling headphones to place a call to a Bose smart device or the Amazon Echo device with the Alexa mobile app',
-         None], 'dimensions'                                                                                 : '',
+         None],
+     'dimensions'                                                                                 : '',
      'weight'                                                                                                : ''
      },
 

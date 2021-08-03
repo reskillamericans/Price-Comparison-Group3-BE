@@ -41,7 +41,7 @@ header{
     margin: auto;
     width: 95%;
     height: 167px;
-    background: url(./images/landingpage-images/PricedOut2.svg);
+    background: url("../images/landingpage-images/PricedOut2.svg");
     background-repeat: no-repeat;
     background-position-x: -61px;
     background-position-y: -110px;
@@ -55,7 +55,7 @@ header{
 main {
     margin: 4em auto;
     width: 80%;
-    background: url("/images/landingpage-images/shopper.svg");
+    background: url("../images/landingpage-images/shopper.svg");
     background-repeat: no-repeat;
     background-size: 1000px 600px;
     background-position-x: 270px;
@@ -178,6 +178,10 @@ figcaption {
     text-align: center;   
     font-weight: bolder;
     font-size: 15px;
+}
+
+.caption img{
+    object-fit: contain;
 }
 
 footer {
