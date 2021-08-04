@@ -1,4 +1,5 @@
 import uuid
+import environ
 
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -9,7 +10,14 @@ from django.shortcuts import redirect, render
 from .models import *
 
 # Enable or disable email
-send_email = False
+env = environ.Env(
+        # set casting, default value
+        SEND_EMAIL=(bool, False)
+        )
+environ.Env.read_env()
+
+# Send email or instant verification
+send_email = env.bool('SEND_EMAIL')
 
 
 @login_required

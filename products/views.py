@@ -1,4 +1,5 @@
 import json
+import environ
 
 import requests
 from django.contrib import messages
@@ -15,7 +16,14 @@ from .forms import AddProductForm, CommentForm
 from .models import Product, LikeButton, Comment
 
 # Debug product fetching
-debug_gp = False
+env = environ.Env(
+        # set casting, default value
+        DEBUG_GP=(bool, False)
+        )
+environ.Env.read_env()
+
+# Debug product fetching
+debug_gp = env.bool('DEBUG_GP')
 amazon_responses = amazon_products.amazon_responses
 ebay_responses = ebay_products.ebay_responses
 
@@ -163,12 +171,10 @@ def delete_product(request, product_id):
 
 # Get amazon product from asin
 def get_amazon_product(amazon_asin):
-    url = "https://amazon-products1.p.rapidapi.com/product"
+    url = env('AMAZON_URL')
     querystring = {"country": "US", "asin": amazon_asin}
-    headers = {
-        'x-rapidapi-key' : 'cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad',
-        'x-rapidapi-host': 'amazon-products1.p.rapidapi.com'
-        }
+    headers = {'x-rapidapi-key' : env('AMAZON_KEY'),
+               'x-rapidapi-host': env('AMAZON_HOST')}
 
     if debug_gp:
         response = amazon_responses[int(amazon_asin)]
@@ -190,14 +196,10 @@ def get_amazon_product(amazon_asin):
 
 # Get ebay product from url
 def get_ebay_product(ebay_url):
-    url = "https://ebay-com.p.rapidapi.com/product"
-    querystring = {
-        "URL": ebay_url
-        }
-    headers = {
-        'x-rapidapi-key' : "cd09594deamshbb8b2478ed8a011p1e756ajsnc0216f4bdfad",
-        'x-rapidapi-host': "ebay-products.p.rapidapi.com"
-        }
+    url = env('EBAY_URL')
+    querystring = {"URL": ebay_url}
+    headers = {'x-rapidapi-key' : env('EBAY_KEY'),
+               'x-rapidapi-host': env('EBAY_HOST')}
 
     if debug_gp:
         response = ebay_responses[int(ebay_url)]
