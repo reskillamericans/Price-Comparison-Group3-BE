@@ -1,0 +1,89 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="icon" href="{% static '/images/contact-images/PricedOut___1_-removebg-preview 2.png' %}" type="image/svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"/>
+<link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<title>PricedOut | Contact Us</title>
+{% endblock css %}
+{% block pattern_div %}
+<body>
+<header>
+    <div class="logo-div"></div>
+    {% include 'products/navlinks.html' %}
+</header>
+{% endblock pattern_div %}
+{% block content %}
+<Section class="Main">
+    <div class="touch"><h4>Get In Touch</h4></div>
+    <div class="main-content">
+        <div class="card">
+            <p>Thank you for your message!</p>
+        </div>
+        <div class="address">
+            <p>5439 Land of Milk & Honey Blvd
+                <span>Suite 112</span>
+                <span>Atlanta, GA 30303 </span> <br>
+                <span class="contact"> 1(219) 867-5309</span><br><br>
+                <span class="contact">CustomerHelp@RandomShop.com</span>
+            </p>
+            <img src="{% static '/images/contact-images/Rectangle 19.svg' %}" alt="">
+        </div>
+    </div>
+</Section>
+
+<footer>
+    <div class="ft">
+        <div class="qlinks ">
+            <ul>
+                <dl>Quick Links</dl>
+                <li><a href="{% url 'signup' %}">Register</a></li>
+                <li><a href="{% url 'signup' %}">Login</a></li>
+            </ul>
+        </div>
+
+        <div class="others">
+            <ul>
+                <dl>Others</dl>
+                <li><a href="{% url 'faq' %}">User FAQs</a></li>
+                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+                <li><a href="#">Legal</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+            </ul>
+        </div>
+
+        <div class="products">
+            <ul>
+                <dl>Products</dl>
+                <li><a href="{% url 'products:add_product' %}">Review</a></li>
+                <li><a href="{% url 'products:product_list' %}">Compare</a></li>
+                <li><a href="#">Buy</a></li>
+            </ul>
+        </div>
+
+        <div class="subscribe">
+            <p>Subcribe to our newsletter and be the first to <span>know about our updates </span></p>
+            <div class="sub">
+                <div class="email">
+                    <input id="input_email1" class="floating_input1" name="email Address" type="email"
+                           placeholder="Email Address">
+                </div>
+                <button>Subscribe</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="copyright">
+        <p>Copyright 2020. All rights reserved</p>
+        <i class="fab fa-youtube"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+    </div>
+
+</footer>
+{% endblock content %}

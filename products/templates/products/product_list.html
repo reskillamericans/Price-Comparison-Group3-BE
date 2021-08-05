@@ -1,0 +1,34 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/product.css' %}">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<title>PricedOut | Products</title>
+{% endblock css %}
+{% block content %}
+
+{% for slice in slices %}
+<div class="wrapper">
+    <div class=" rowHeaders {% cycle 'table1' 'table2' %}">
+        <div class="emptySpace"><p></p></div>
+        <h4>Amazon Price</h4>
+        <h4>E-bay Price</h4>
+        <h4>Category</h4>
+    </div>
+
+    {% for product in product_list|slice:slice %}
+    <div class="container">
+        <div class="productImage {% if user in product.likebutton.user.all %}star{% endif %}">
+            <a href="{% url 'products:product_modal' product.pk %}">
+                <img class="thumb" src="{{ product.image }}" title="{{ product }}"></a></div>
+        <h4 class="productName"><a href="{% url 'products:product_detail' product.pk %}" title="{{ product }}">
+            {{ product|wordwrap:25|linebreaksbr|truncatechars_html:20 }}</a></h4>
+        <a class="amazonPrice" href="{{ product.amazon_url }}">${{ product.amazon_price }}</a>
+        <a class="ebayPrices" href="{{ product.ebay_url}}">${{ product.ebay_price }}</a>
+        <h5 class="condition" title="{{ product.category }}">{{ product.category|truncatechars:16 }}</h5>
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+
+{% endblock content %}

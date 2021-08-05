@@ -1,0 +1,58 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/item.css' %}">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>PricedOut | Add & Delete Products</title>
+{% endblock css %}
+
+{% block content %}
+<div class="productName">
+    <h1>Add a Product</h1>
+</div>
+{% if messages %}
+<div>
+    <ul style="display: table; margin: 0 auto;">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+<div style="text-align: center;">
+    <form action="{% url 'products:add_product' %}" method="POST">
+        {% csrf_token %}
+        <h3>{{ form.amazon_asin.label }}</h3>
+        {{ form.amazon_asin }}
+        {{ form.amazon_asin.errors.as_text|escape }}
+        <br/><br/>
+
+        <h3>{{ form.ebay_url.label }}</h3>
+        {{ form.ebay_url }}
+        {{ form.ebay_url.errors.as_text|escape }}
+
+        <p><input type="submit" value="Add Product"></p>
+    </form>
+</div>
+<br/>
+<br/>
+<div class="productName">
+    <h1>Delete Products</h1>
+</div>
+    <table style="margin: 0 auto;">
+    {% for product in product_list %}
+        <tr>
+            <td style="padding: 20px; width: 100px;">ID {{ product.id }}</td>
+            <td style="width: 50px;"><a href="{% url 'products:delete_product' product.id %}">
+                <i class="fa fa-trash"></i></a></td>
+            <td><a href="{% url 'products:product_detail' product.id %}" title="{{ product }}">
+                {{ product|truncatechars:60 }}</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+<footer></footer>
+
+{% endblock content %}

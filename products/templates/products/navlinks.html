@@ -1,0 +1,14 @@
+<nav class="navBar">
+    <ul class="navLinks">
+        <li><a href="{% url 'landing_page' %}">Home</a></li>
+        <li><a href="{% url 'about_us' %}">About Us</a></li>
+        <li><a href="{% url 'products:product_list' %}">Products</a></li>
+        <li><a href="{% url 'faq' %}">FAQS</a></li>
+        <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+        {% if not user.is_authenticated %}
+        <li><a href="{% url 'signup' %}">Login</a></li>
+        {% else %}
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% endif %}
+    </ul>
+</nav>

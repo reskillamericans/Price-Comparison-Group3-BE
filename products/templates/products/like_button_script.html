@@ -1,0 +1,25 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+// AJAX CALL
+$('.like_icon').click(function(){
+    $.ajax({
+             type: "POST",
+             url: "{% url 'products:like' %}",
+             data: {'likes_id': $(this).attr('id'),
+                    'operation':'like_submit',
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+             },
+             dataType: "json",
+             success: function(response) {
+                selector = document.getElementById(response.likes_id);
+                    if(response.user_like==true){
+                      $(selector).css("color", "gold");
+                    }
+                    else if(response.user_like==false){
+                      $(selector).css("color", "lightgrey");
+                    }
+                document.getElementById('likes_count').innerHTML = response.likes_count;
+              }
+        });
+  })
+</script>

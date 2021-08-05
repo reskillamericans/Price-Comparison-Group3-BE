@@ -1,0 +1,26 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/item.css' %}">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Edit Comment</title>
+{% endblock css %}
+
+{% block content %}
+<div style="margin: 0 auto; width: 90%;">
+    <h1>Edit Comment</h1>
+    <form method="POST" action="{% url 'products:edit_comment' comment.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <br/>
+        <input type="submit" value="Submit Update" name="Update">
+        <br/><br/><br/>
+        <input type="submit" value="Cancel" name="Cancel">
+    </form>
+</div>
+<footer></footer>
+
+{% endblock content %}

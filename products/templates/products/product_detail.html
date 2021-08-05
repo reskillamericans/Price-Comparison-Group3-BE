@@ -1,0 +1,54 @@
+{% extends 'products/product_base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/item.css' %}">
+<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
+<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
+<title>PricedOut | {{ product.product_name }}</title>
+{% endblock css %}
+
+{% block content %}
+<div class="centerGrid">
+    <div class="container">
+
+        <div class="productImage">
+            <img src="{{ product.image }}">
+            <p>Roll over image to zoom in</p>
+            <br/>
+            <br/>
+            <br/>
+            {% include 'products/like_button.html' %}
+        </div>
+
+        <div class="line1"></div>
+
+        <div class="description">
+
+            <div class="productName">
+                <h1>{{ product.product_name }}</h1>
+            </div>
+
+            <p class="store">Sold on Amazon and Ebay</p>
+
+            <div class="features">
+                <h2 class="price">Amazon Price: ${{ product.amazon_price }}</h2>
+                <h2 class="price">E-bay Price: ${{ product.ebay_price }}</h2>
+                <ul>
+                    {{ list_lines|unordered_list }}
+                </ul>
+            </div>
+
+            <div class="line2"></div>
+
+            <form class="amazonButton">
+                <button formaction="{{ product.amazon_url }}">Visit Amazon Site</button>
+            </form>
+
+            <form class="amazonButton">
+                <button formaction="{{ product.ebay_url }}">Visit E-bay Site</button>
+            </form>
+        </div>
+    </div>
+</div>
+<footer></footer>
+{% endblock content %}
