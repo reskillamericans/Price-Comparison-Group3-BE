@@ -236,7 +236,3 @@ def signup(request):
 def logout_user(request):
     logout(request)
     return render(request, 'signup.html')
-
-
-def thank_you(request):
-    return render(request, 'thank_you.html')

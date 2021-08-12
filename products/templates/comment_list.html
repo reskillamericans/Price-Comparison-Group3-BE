@@ -53,7 +53,7 @@
         <a href="{% url 'products:delete_comment' comment.id %}">Delete</a>
         <br/>
         <br/>
-        {{ comment.content }}<br><br/>
+        {{ comment.content|linebreaks }}<br><br/>
         <hr>
         {% empty %}
         {% endfor %}

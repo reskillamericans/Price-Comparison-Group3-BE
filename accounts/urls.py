@@ -20,5 +20,4 @@ urlpatterns = [
     path('passwordreset', reset_attempt, name="reset_attempt"),
     path('resetpage', resetpage, name="resetpage"),
     path('signup/', views.signup, name="signup"),
-    path('thank_you/', views.thank_you, name="thank_you"),
     ]
