@@ -151,7 +151,7 @@ h1 {
 figure img{
     object-fit: contain;
     width: 300px;
-    height: 300px;
+    height: 190px;
 }
 
 figcaption {
@@ -160,6 +160,7 @@ figcaption {
     font-weight: 700;
     width: 320px;
     color: black;
+    margin: 0 auto;
 }
 
 .info {
@@ -309,6 +310,10 @@ textarea:focus, input:focus{
     line-height: calc((var(--textareaHeight)) - var(--placeholderFontSize));
 }
 
+.comments {
+    width: 70%;
+    margin: 40vh auto 0 auto;
+}
 
 /* .blue-border {
     background: #2D3047;
@@ -515,9 +520,16 @@ textarea:focus, input:focus{
 
     .capsule a {
         position: relative;
-        left: 41px;
-        top: -22px;
+        left: 16px;
+        top: -2px;
     }
+
+    #likes_count {
+        position: relative;
+        left: 40px;
+        top: -20px;
+    }
+
     .like-btn {
         width: 15px;
         position: relative;
@@ -655,7 +667,7 @@ textarea:focus, input:focus{
     }
     figure img {
         width: 200px;
-        height: 200px;
+        height: 225px;
     }
 
     .product {
@@ -703,7 +715,7 @@ textarea:focus, input:focus{
         padding-left: 36px;
         position: absolute;
         right: 0;
-        top: 208px;
+        top: 236px;
     }
     .ebay a{
         color: black;
@@ -833,6 +845,12 @@ textarea:focus, input:focus{
 
     .blue-border {
             display: none;
+    }
+
+
+    .comments {
+        width: 70%;
+        margin:470px auto 0 auto;
     }
 
     @media only screen and (max-device-width: 360px) and (max-device-height: 640px) and (-webkit-device-pixel-ratio: 3) {

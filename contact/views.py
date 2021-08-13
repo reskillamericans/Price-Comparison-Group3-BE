@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -41,5 +42,5 @@ def save_message(request):
         message = request.POST.get('message')
 
         Message.objects.create(name=name, email=email, message=message)
-
-    return redirect('thank_you')
+        messages.success(request, "Thank you for contacting us! We will respond within 1-2 business days.")
+    return redirect('contact_us')

@@ -1,15 +1,29 @@
-{% extends 'products/product_base.html' %}
-{% load static %}
-{% block css %}
-<link rel="stylesheet" href="{% static 'css/item.css' %}">
-<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
-<link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
-<link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<title>Edit Comment</title>
-{% endblock css %}
-
-{% block content %}
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Comment</title>
+    <link rel="icon" href="{% static '/images/register_images/PricedOut___1_-removebg-preview 2.png' %}" type="image/svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+<header class="header1">
+    {% include 'products/navlinks.html' %}
+</header>
+{% if messages %}
+<div class="messages" style="text-align: center;">
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}" {% endif %}><strong>{{ message }}</strong></p>
+    {% endfor %}
+</div>
+{% endif %}
+<br/>
+<br/>
 <div style="margin: 0 auto; width: 90%;">
     <h1>Edit Comment</h1>
     <form method="POST" action="{% url 'products:edit_comment' comment.id %}">
@@ -22,5 +36,5 @@
     </form>
 </div>
 <footer></footer>
-
-{% endblock content %}
+</body>
+</html>

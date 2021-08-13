@@ -19,7 +19,7 @@
     {% for product in product_list|slice:slice %}
     <div class="container">
         <div class="productImage {% if user in product.likebutton.user.all %}star{% endif %}">
-            <a href="{% url 'products:product_modal' product.pk %}">
+            <a href="{% url 'products:product_detail' product.pk %}">
                 <img class="thumb" src="{{ product.image }}" title="{{ product }}"></a></div>
         <h4 class="productName"><a href="{% url 'products:product_detail' product.pk %}" title="{{ product }}">
             {{ product|wordwrap:25|linebreaksbr|truncatechars_html:20 }}</a></h4>

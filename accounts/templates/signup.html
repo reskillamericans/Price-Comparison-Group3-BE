@@ -1,22 +1,27 @@
-{% extends 'products/product_base.html' %}
-{% load static %}
-{% block css %}
-<link rel="icon" href="{% static '/images/register_images/PricedOut___1_-removebg-preview 2.png' %}" type="image/svg">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-      crossorigin="anonymous"/>
-<link rel="stylesheet" href="{% static 'css/signup.css' %}">
-<title>PricedOut | Signup</title>
-{% endblock css %}
-
-{% block pattern_div %}
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" href="{% static '/images/register_images/PricedOut___1_-removebg-preview 2.png' %}" type="image/svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous"/>
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+</head>
 <body>
 <header class="header1">
     {% include 'products/navlinks.html' %}
 </header>
-{% endblock pattern_div %}
-
-{% block content %}
+{% if messages %}
+<div class="messages" style="text-align: center;">
+    {% for message in messages %}
+    <p {% if message.tags %} class="{{ message.tags }}" {% endif %}><strong>{{ message }}</strong></p>
+    {% endfor %}
+</div>
+{% endif %}
 <Section class="Main">
 
     <div class="main-content">
@@ -111,9 +116,10 @@
 
                     <input class="login-btn" type="submit" value="Login">
                 </form>
-
+                <br/><br/>
             </div>
         </div>
     </div>
 </Section>
-{% endblock content %}
+</body>
+</html>

@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400&display=swap');
 body{
     margin: 0;
     padding: 0;
-    background-color: #f4f0ed; 
+    background-color: #f4f0ed;
     background-image:url(../images/contact-images/Group\ 70.png), url(../images/contact-images/Group\ 70.png),
      url(../images/contact-images/Group\ 81.png), url(../images/contact-images/Group\ 82.png) ;
     background-repeat: no-repeat;
     background-size: 8%, 8%, 9%,9%;
     background-position: 77% 22%, 18.5% 64%, 0% 68% , 100% 68%;
-
+    font-family: "Open Sans", sans-serif;
 }
 
 /* Header and nav bar style*/
@@ -20,7 +20,7 @@ body{
 }
 .navLinks li a {
      font-size: 16px;
-     font-weight: bold;
+     font-weight: normal;
      color: #2D3047;
      text-decoration: none;
      font-family: "Open Sans", sans-serif;
@@ -37,7 +37,7 @@ header{
     margin: auto;
     width: 95%;
     height: 167px;
-    background: url(../images/landingpage-images/PricedOut2.svg);
+    background: url(../images/landingpage-images/Pricedout2.svg);
     background-repeat: no-repeat;
     background-position-x: -61px;
     background-position-y: -110px;
@@ -66,7 +66,7 @@ a+a {
 {
     width: 50%;
     height: 60%;
-    margin: auto; 
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,7 +75,7 @@ a+a {
     margin-bottom: 4rem;
     margin-top: 2rem;
     border-radius: 8px;
-    
+
 }
 
 .main-content{
@@ -85,20 +85,19 @@ a+a {
     /* border-radius: 8px; */
     box-shadow: #f4f0ed;
 
-    
+
  }
 .touch{
     text-align: center;
-    margin-top: 0.5em; 
+    margin-top: 0.5em;
     text-decoration: underline;
     color: hsl(32, 96%, 52%);
 }
 
 .card{
-   width: 50%;
-   padding: 0 5%;
+   width: 50% ;
+   padding:  0  0 0 5% ;
    font-size: 16px;
-   margin: 0 auto;
 }
 
 .form h5{
@@ -107,13 +106,13 @@ a+a {
     margin-bottom:1rem;
 }
  /* input feilds stylying*/
- 
+
 .floating{
     /* margin-bottom: 1rem; */
     background-color:white ;
     transition: all .3s;
     margin-right: 1rem;
-   
+
 }
 
  .floating_input{
@@ -123,7 +122,7 @@ a+a {
     border: 1px solid grey;
     border-radius: 5px;
     width: 100% ;
-    height: 12px;
+    height: 28px;
     padding-right: 1.3rem;
     transition: all .5s;
  }
@@ -151,7 +150,7 @@ a+a {
     transform-origin: 0 0;
     transition:all .3;
     opacity: 1;
-    
+
 }
 
 #message{
@@ -177,7 +176,7 @@ a+a {
 
 .address{
    width: 50% ;
-   display: flex; 
+   display: flex;
    flex-direction: column;
    padding: 1% 1%;
    font-size: 10px;
@@ -187,24 +186,23 @@ a+a {
 }
 
 .address p{
-    margin: 0 auto;
+    margin-right: 3rem;
     height: 40%;
 
 }
 
-.address span::before { 
+.address span::before {
     content: '\A'; white-space: pre;
  }
  .contact{
      color: black;
      font-weight: 530;
- 
+
  }
 
 
 .address img{
     width: 80%;
-    margin: 0 auto;
     /* margin: 70px 5px 0px 64px; */
     justify-content: flex-end;
 }
@@ -218,7 +216,7 @@ footer{
 }
 .ft{
     display: flex;
-    font-size: 10px;
+    font-size: 12px;
     height: 85%;
     justify-content: flex-end;
 }
@@ -232,17 +230,18 @@ footer{
 .ft li{
     list-style-type: none;
     margin-bottom: 0.75rem;
+
 }
 .ft a{
     text-decoration: none;
-    color: grey;    
+    color: grey;
 }
 .subscribe{
     display: flex ;
     flex-direction: column;
     margin: 0 6rem;
 }
-.subscribe span::before { 
+.subscribe span::before {
     content: '\A'; white-space: pre;
  }
 .email{
@@ -289,58 +288,137 @@ footer{
     margin-right: 1rem;
     color: white;
 }
+/*responsive*/
+@media (max-width: 780px){
+    html, body {
+        overflow-x: hidden;
+    }
+
+    body {
+        height: 1557px;
+        padding: 0;
+        margin: 0;
+        position: relative;
+    }
+
+    header {
+        flex-direction: column;
+        width: 560px;
+        height: 145px;
+        padding: 0;
+        background-position-x: 120px;
+        background-position-y: -70px;
+        background-size: 50%;
+    }
+
+    .navBar {
+        width: 100%;
+        padding: 0;
+    }
+
+    .navLinks {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0;
+        margin: 0;
+    }
+
+    .navLinks li {
+        padding: 0;
+        margin: 0 8px;
+    }
+
+    .navLinks li a {
+        font-size: 11px;
+        width: 100%;
+        margin: 0;
+    }
+    .Main{
+        width: 90%;
+        height: 55vh;
+    }
+    .sub{
+        display: block;
+    }
+
+    .subscribe button{
+        width: 160px;
+        margin-top: 1em;
+        padding: 10px;
+        }
+
+    .email{
+
+        height: 60%;
+    }
+    .footer{
+        width: 60%;
+        font-size: 2.5vw;
+        margin: auto;
+        height: 38%;
+    }
+
+    .ft {
+        height: 57%;
+    }
+
+}
 
 @media all and (max-width: 600px) {
     body {
         /* border: 1px solid red; */
         padding: 0;
+        height: 200vh;
         margin: 0;
         background-image:url(../images/register_images/Group\ 70.png), url(../images/register_images/Group\ 70.png),
         url(../images/register_images/Group\ 81.png), url(../images/register_images/Group\ 82.png) ;
         background-repeat: no-repeat;
         background-size: 10%, 10%, 14%,14%;
         background-position: 48% 16%, 11% 66%, bottom left, bottom right;
-   
+
         /* width: 100%; */
        }
-    .header1 {
+       header {
         flex-direction: column;
-        width: 100%;
-        height: 30vh;
+        width: 560px;
+        height: 145px;
         padding: 0;
-        margin-bottom: 0;
-        background-position-y: -90px;
-        background-position-x: 5px;
-        background-size: cover;
-        /* border: 1px solid red;  */
-        }
-    .navBar {
-        /* border: 1px solid red; */
-        width: 100%;
-        padding: 0;
-     
+        background-position-x: 40px;
+        background-position-y: -70px;
+        background-size: 50%;
     }
+
+    .navBar {
+        width: 100%;
+        padding: 0;
+    }
+
+
     .navLinks {
-        /* border: 1px solid red; */
         width: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
         padding: 0;
+        margin: 0;
+        margin-right: 35%;
     }
+
     .navLinks li {
-        /* border: 1px solid red; */
         padding: 0;
         margin: 0 8px;
-        font-size: 14px;
     }
+
+
     .navLinks li a {
-        /* border: 1px solid red; */
-        font-size: 11px;
-        width: 100%;
-        margin: 0;
-    }
-    
+         font-size: 11px;
+         width: 100%;
+         margin: 0;
+        }
+
+
     .Main{
         width: 90%;
         margin: auto;
@@ -360,14 +438,14 @@ footer{
     .card{
         width: 100%;
         border-right: none;
-        font-size: 16px;  
+        font-size: 16px;
         padding: 1%;
      }
 
     .send-btn{
          width: 80%;
          margin-left:1.5rem;
-       
+
      }
 
     .address{
@@ -379,27 +457,28 @@ footer{
 
     .address p{
          height: 20% ;
-        
+
      }
 
     .footer{
-        width: 50%;
+        width: 80%;
         font-size: 2.5vw;
         margin: auto;
     }
 
     .ft{
+        height: 80%;
         display: flex;
         flex-wrap:wrap;
         font-size: 2.5vw;
         justify-content: center;
-    
+
     }
     .ft dl{
         margin-top: 0;
         margin-bottom: 1rem;
         text-decoration: 1px solid underline;
-        font-size: 12px;
+        font-size: 11px;
         font-weight: 600;
     }
     .ft li{
@@ -410,17 +489,18 @@ footer{
     .sub{
         display: block;
     }
-    
+
     .subscribe{
         margin: 0;
         font-size: 10px;
     }
-    
+
     .subscribe button{
-        width: 100px;
+        width: 160px;
         margin-left: 2rem;
+        padding: 10px;
     }
-   
+
     .email{
         margin-bottom:0.5rem;
         height: 100%;
@@ -428,7 +508,7 @@ footer{
     }
 
     .floating_input1{
-        width: 100px;
+        /* width: 100px; */
         margin-left: 2rem;
     }
 }

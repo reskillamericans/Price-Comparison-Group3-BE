@@ -104,6 +104,8 @@ class ProductModalView(generic.DetailView):
             context['user_like'] = LikeButton.objects.filter(user=self.request.user, product_id=pk)
         else:
             context['user_like'] = False
+
+        context['comment_list'] = Comment.objects.filter(product_id=pk)
         return context
 
 
@@ -261,7 +263,8 @@ def add_comment(request, product_id):
         content = request.POST.get('content')
         comment = Comment(user=user, content=content, product=product, approved=True)
         comment.save()
-    return redirect('products:product_comments', pk=product.pk)
+        messages.success(request, 'Comment successfully added.')
+    return redirect('products:product_modal', pk=product.pk)
 
 
 # Delete comment
@@ -270,7 +273,8 @@ def delete_comment(request, comment_id):
     comment = get_object_or_404(Comment, id=comment_id)
     product = get_object_or_404(Product, pk=comment.product.pk)
     comment.delete()
-    return redirect('products:product_comments', pk=product.pk)
+    messages.success(request, 'Comment successfully deleted.')
+    return redirect('products:product_modal', pk=product.pk)
 
 
 # Edit Comment
@@ -287,9 +291,10 @@ def edit_comment(request, comment_id):
             comment.updated = True
             comment.last_update = timezone.now()
             comment.save()
-            return redirect('products:product_comments', pk=comment.product.pk)
+            messages.success(request, 'Comment was successfully edited.')
+            return redirect('products:product_modal', pk=comment.product.pk)
     elif request.method == 'POST' and 'Cancel' in request.POST:
-        return redirect('products:product_comments', pk=comment.product.pk)
+        return redirect('products:product_modal', pk=comment.product.pk)
 
     context = {'form': form, 'comment': comment}
     return render(request, 'edit_comment.html', context)
