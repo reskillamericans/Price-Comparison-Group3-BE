@@ -4,8 +4,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: #f4f0ed;
-    background-image:url(../images/contact-images/Group\ 70.png), url(../images/contact-images/Group\ 70.png),
-     url(../images/contact-images/Group\ 81.png), url(../images/contact-images/Group\ 82.png) ;
+    background-image:url(../images/contact-images/Group70.png), url(../images/contact-images/Group70.png),
+     url(../images/contact-images/Group81.png), url(../images/contact-images/Group82.png) ;
     background-repeat: no-repeat;
     background-size: 8%, 8%, 9%,9%;
     background-position: 77% 22%, 18.5% 64%, 0% 68% , 100% 68%;
@@ -372,8 +372,8 @@ footer{
         padding: 0;
         height: 200vh;
         margin: 0;
-        background-image:url(../images/register_images/Group\ 70.png), url(../images/register_images/Group\ 70.png),
-        url(../images/register_images/Group\ 81.png), url(../images/register_images/Group\ 82.png) ;
+        background-image:url(../images/register_images/Group70.png), url(../images/register_images/Group70.png),
+        url(../images/register_images/Group81.png), url(../images/register_images/Group82.png) ;
         background-repeat: no-repeat;
         background-size: 10%, 10%, 14%,14%;
         background-position: 48% 16%, 11% 66%, bottom left, bottom right;

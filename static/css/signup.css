@@ -5,8 +5,8 @@ body{
     margin: 0;
     padding: 0;
     background-color: #f4f0ed;
-    background-image:url(../images/register_images/Group\ 70.png), url(../images/register_images/Group\ 70.png),
-     url(../images/register_images/Group\ 81.png), url(../images/register_images/Group\ 82.png) ;
+    background-image:url(../images/register_images/Group70.png), url(../images/register_images/Group70.png),
+     url(../images/register_images/Group81.png), url(../images/register_images/Group82.png) ;
     background-repeat: no-repeat;
     background-size: 8%, 8%, 9%,9%;
     background-position: 79% 17%, 14% 72%, bottom left, bottom right;
@@ -341,8 +341,8 @@ a+a {
          height:210vh;
          padding: 0;
          margin: 0;
-         background-image:url(../images/register_images/Group\ 70.png), url(../images/register_images/Group\ 70.png),
-         url(../images/register_images/Group\ 81.png), url(../images/register_images/Group\ 82.png) ;
+         background-image:url(../images/register_images/Group70.png), url(../images/register_images/Group70.png),
+         url(../images/register_images/Group81.png), url(../images/register_images/Group82.png) ;
          background-repeat: no-repeat;
          background-size: 10%, 10%, 14%,14%;
          background-position: 68% 16%, 11% 66%, 0% 100%, bottom right;
