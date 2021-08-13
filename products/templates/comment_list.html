@@ -1,7 +1,7 @@
 {% extends 'products/product_base.html' %}
 {% load static %}
 {% block css %}
-<link rel="stylesheet" href="{% static 'css/Item.css' %}">
+<link rel="stylesheet" href="{% static 'css/item.css' %}">
 <link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
 <link rel="icon" href="{% static 'images/single_product_images/logo.png' %}" type="image/svg">
 <link rel="icon" href="{% static 'images/product_images/logo.png' %}" type="image/svg">
@@ -53,7 +53,7 @@
         <a href="{% url 'products:delete_comment' comment.id %}">Delete</a>
         <br/>
         <br/>
-        {{ comment.content }}<br><br/>
+        {{ comment.content|linebreaks }}<br><br/>
         <hr>
         {% empty %}
         {% endfor %}

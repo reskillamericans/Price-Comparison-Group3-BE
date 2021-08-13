@@ -1,0 +1,33 @@
+<div class="comments"><br/>
+    <hr>
+    <br/>
+    <h2>Comments: {{ product.comments.count }}</h2>
+    <br/>
+    <hr>
+
+    <div>
+        {% for comment in product.comments.all %}
+        <div class="date">
+            <strong>{{ comment.user }}</strong> | {{ comment.created }}
+            {% if comment.updated %} | Edited: {{ comment.last_update }} {% endif %}
+        </div>
+        {% if comment.user == user %}
+        <a href="{% url 'products:edit_comment' comment.id %}">Edit</a>
+        &nbsp;|&nbsp;
+        <a href="{% url 'products:delete_comment' comment.id %}">Delete</a>
+        {% endif %}
+        <br/>
+        <br/>
+        {{ comment.content|linebreaksbr }}<br><br/>
+        <hr>
+        {% empty %}
+        <h2>Be the first to leave a comment!</h2>
+        {% endfor %}
+        <hr>
+        <br/>
+        <a href="{% url 'products:product_detail' product.id %}">To Product Detail</a>
+        <br/><br/>
+        <a href="{% url 'products:product_list' %}">To Product List</a>
+        <br/><br/><br/>
+    </div>
+</div>
