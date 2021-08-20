@@ -16,10 +16,7 @@ from .forms import AddProductForm, CommentForm
 from .models import Product, LikeButton, Comment
 
 # Debug product fetching
-env = environ.Env(
-        # set casting, default value
-        DEBUG_GP=(bool, False)
-        )
+env = environ.Env()
 environ.Env.read_env()
 
 # Debug product fetching

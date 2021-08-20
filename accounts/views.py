@@ -4,6 +4,7 @@ import environ
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail import send_mail
 from django.shortcuts import redirect, render
 
@@ -70,10 +71,11 @@ def register_attempt(request):
             user_obj.save()
 
             if send_email:
+                current_site = get_current_site(request)
                 auth_token = str(uuid.uuid4())
                 profile_obj = Profile.objects.create(user=user_obj, auth_token=auth_token)
                 profile_obj.save()
-                send_mail_after_registration(email, auth_token)
+                send_mail_after_registration(email, auth_token, current_site)
                 return redirect('token_send')
             else:
                 profile_obj = Profile.objects.create(user=user_obj)
@@ -145,9 +147,9 @@ def resetting(request, reset_token):
         return redirect('home')
 
 
-def send_mail_after_registration(email, token):
+def send_mail_after_registration(email, token, site):
     subject = 'Your accounts need to be verified'
-    message = f'Hi paste the link to verify your account http://127.0.0.1:8000/verify/{token}'
+    message = f'Hi paste the link to verify your account:\n{site}/verify/{token}'
     email_from = 'PricedOut@PricedOut.com'  # settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
@@ -165,9 +167,9 @@ def contact_us(request):
     return render(request, 'Contact.html')
 
 
-def send_mail_password_reset(email, token):
+def send_mail_password_reset(email, token, site):
     subject = 'Reset your password'
-    message = f'Hi paste the link to reset your password http://127.0.0.1:8000/resetting/{token}'
+    message = f'Hi paste the link to reset your password:\n{site}/resetting/{token}'
     email_from = 'PricedOut@PricedOut.com'  # settings.EMAIL_HOST_USER
     recipient_list = [email]
     send_mail(subject, message, email_from, recipient_list)
@@ -176,16 +178,16 @@ def send_mail_password_reset(email, token):
 def reset_attempt(request):
     if request.method == 'POST':
         email = request.POST.get('email')
-        print(email)
 
         try:
             user = User.objects.filter(email=email).first()
             if user:
+                current_site = get_current_site(request)
                 reset_token = str(uuid.uuid4())
                 profile_obj = Profile.objects.get(user=user)
                 profile_obj.reset_token = reset_token
                 profile_obj.save()
-                send_mail_password_reset(email, reset_token)
+                send_mail_password_reset(email, reset_token, current_site)
                 return redirect('token_send')
 
             else:

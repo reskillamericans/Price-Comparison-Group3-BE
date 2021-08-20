@@ -19,7 +19,7 @@
 
     <header>
         <div class="logo">
-            <img src="{% static '/images/modal-images/brandlogo.png' %}" alt="priced-out-brand-logo">
+            <img src="{% static 'images/modal-images/brandlogo.png' %}" alt="priced-out-brand-logo">
         </div>
         {% include 'products/navlinks.html' %}
     </header>
@@ -27,7 +27,7 @@
 
     {% block content %}
     <h1>Product Summary</h1>
-    <img src="{% static '/images/modal-images/boxes.png' %}" alt="3-decorative-golden-squares-randomly-overlapping"
+    <img src="{% static 'images/modal-images/boxes.png' %}" alt="3-decorative-golden-squares-randomly-overlapping"
          class="boxes">
 
     <div class="main">
@@ -79,11 +79,11 @@
             {% include 'products/like_button_script.html' %}
 
             <div class="social-icons">
-                <a href="https://www.facebook.com/"><img src="{% static '/images/modal-images/fb-icon.svg' %}"></a>
-                <a href="https://twitter.com/"><img src="{% static '/images/modal-images/twtr-icon.svg' %}"></a>
-                <a href="https://www.instagram.com/"><img src="{% static '/images/modal-images/ig-icon.svg' %}"></a>
-                <!--<a href="#"><img src="{% static '/images/modal-images/link-icon.svg' %}" class="link"></a>-->
-                <input type="image" src="{% static '/images/modal-images/submit.svg' %}" class="link"
+                <a href="https://www.facebook.com/"><img src="{% static 'images/modal-images/fb-icon.svg' %}"></a>
+                <a href="https://twitter.com/"><img src="{% static 'images/modal-images/twtr-icon.svg' %}"></a>
+                <a href="https://www.instagram.com/"><img src="{% static 'images/modal-images/ig-icon.svg' %}"></a>
+                <!--<a href="#"><img src="{% static 'images/modal-images/link-icon.svg' %}" class="link"></a>-->
+                <input type="image" src="{% static 'images/modal-images/submit.svg' %}" class="link"
                        alt="Submit Comment" title="Submit Comment" form="submitform">
                 <!--<p><input type="submit" value="Submit" form="submitform"></p>-->
             </div>
